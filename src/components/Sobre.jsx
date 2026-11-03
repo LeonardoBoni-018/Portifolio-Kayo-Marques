@@ -1,85 +1,69 @@
-import { useEffect, useRef, useState } from 'react';
-import { gsap, MQ_MOVIMENTO, ScrollTrigger } from '../lib/gsap.js';
-import { I, INSTAGRAM_URL, WHATSAPP_URL } from '../data.js';
-import { Selo } from './Logo.jsx';
+import { useEffect, useRef } from 'react';
+import { gsap, MQ_MOVIMENTO } from '../lib/gsap.js';
+import { I, WHATSAPP_URL } from '../data.js';
 
-// o que passa pelas lentes do Kayo: cada linha acende ao cruzar o meio da tela e troca a foto ao lado
-const LINHAS = [
-  { t: 'O sim no jardim.', img: I.pCas, cap: 'Casamento' },
-  { t: 'A hora do parabéns.', img: I.fesBolo, cap: 'Festa' },
-  { t: 'A família no pôr do sol.', img: I.ensFam, cap: 'Ensaio' },
-  { t: 'O prato saindo da cozinha.', img: I.marPrato, cap: 'Marca' },
-  { t: 'Os stories no ar, com a festa acontecendo.', img: I.pTr, cap: 'Tempo real' }
+const FRASE = 'Registro casamentos, festas, ensaios e marcas em vídeo e foto, e coloco tudo no ar enquanto o evento acontece.';
+
+const FAZ = [
+  { t: 'Vídeo', d: 'Reels e filmes verticais com edição ágil.' },
+  { t: 'Foto', d: 'Ensaios e eventos com luz natural.' },
+  { t: 'Tempo real', d: 'Stories no ar durante a festa, com equipe de até 3 pessoas.' }
 ];
 
-// SOBRE: quem é o Kayo, com o retrato fixo enquanto as linhas passam
+// SOBRE: apresentação em formato editorial (um "olá" grande, o retrato e linhas com rótulo).
+// Movimento leve: o retrato surge de baixo uma vez, as palavras da frase ganham cor ao rolar
+// e as divisórias se desenham. Sem script ou com movimento reduzido, tudo aparece pronto.
 export default function Sobre() {
-  const lista = useRef(null);
-  const [ativo, setAtivo] = useState(-1);
+  const raiz = useRef(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
     mm.add(MQ_MOVIMENTO, () => {
-      lista.current.classList.add('anima');
-      const itens = [...lista.current.querySelectorAll('li')];
-      // a barrinha de story de cada linha enche enquanto ela cruza o meio da tela
-      const sts = itens.map((li, i) => {
-        const barra = li.querySelector('.k-lbar i');
-        return ScrollTrigger.create({
-          trigger: li, start: 'top 58%', end: 'bottom 58%',
-          onEnter: () => setAtivo(i), onEnterBack: () => setAtivo(i),
-          onLeaveBack: () => { if (i === 0) setAtivo(-1); },
-          onUpdate: (self) => { barra.style.transform = `scaleX(${self.progress.toFixed(3)})`; },
-          onLeave: () => { barra.style.transform = 'scaleX(1)'; }
-        });
+      const q = gsap.utils.selector(raiz.current);
+      const foto = q('.k-abfoto')[0];
+      const umaVez = { trigger: foto, start: 'top 82%', once: true };
+      gsap.fromTo(foto, { clipPath: 'inset(100% 0% 0% 0% round 24px)' },
+        { clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: 1.3, ease: 'power3.out', scrollTrigger: umaVez });
+      gsap.fromTo(q('.k-abfoto img'), { scale: 1.12 }, { scale: 1, duration: 1.8, ease: 'power3.out', scrollTrigger: { ...umaVez } });
+      gsap.fromTo(q('.k-abw'), { opacity: 0.22 }, {
+        opacity: 1, ease: 'none', stagger: 0.1,
+        scrollTrigger: { trigger: q('.k-abfrase')[0], start: 'top 80%', end: 'bottom 45%', scrub: 0.8 }
       });
-      return () => {
-        sts.forEach((s) => s.kill());
-        lista.current?.querySelectorAll('.k-lbar i').forEach((b) => { b.style.transform = ''; });
-        lista.current?.classList.remove('anima');
-        setAtivo(-1);
-      };
+      q('.k-abln').forEach((ln) => {
+        gsap.fromTo(ln, { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: ln, start: 'top 88%', once: true } });
+      });
     });
     return () => mm.revert();
   }, []);
 
-  const fotos = [{ img: I.retrato, cap: null }].concat(LINHAS);
-  const mostra = ativo + 1;
-
   return (
-    <section id="sobre" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }}>
-      <div className="k-sgrid">
-        <div className="k-sfixo">
-          <figure className="k-retrato">
-            {fotos.map((f, i) => (
-              <img key={i} src={f.img} alt={i === 0 ? 'Kayo Marques' : ''} loading="lazy" className={i === mostra ? 'on' : ''} />
-            ))}
-            <span className="k-sb" />
-            <figcaption className="k-rcap">
-              <Selo size={44} className="k-rselo" />
-              <span><b>Kayo Marques</b><small>{mostra === 0 ? 'Videomaker, fotógrafo e storymaker' : fotos[mostra].cap}</small></span>
-            </figcaption>
-          </figure>
-        </div>
-
-        <div className="k-stexto">
-          <h2 className="k-h2 k-rv">Quem está por trás de cada história</h2>
-          <p className="k-sub k-rv" style={{ marginTop: 20 }}>Sou o Kayo Marques. Registro casamentos, eventos e conteúdos para marcas, em vídeo e foto, e coloco tudo no ar em tempo real. Criatividade é a prioridade por aqui.</p>
-          <ul className="k-linhas" ref={lista} aria-label="O que passa pelas minhas lentes">
-            {LINHAS.map((l, i) => (
-              <li key={l.t} className={i === ativo ? 'on' : ''}>
-                <span className="k-lc">{l.cap}</span>
-                <span className="k-lt">{l.t}</span>
-                <span className="k-lbar" aria-hidden="true"><i /></span>
-              </li>
-            ))}
-          </ul>
-          <div className="k-ctas">
-            <a className="k-btn k-btn-pri" href={WHATSAPP_URL} target="_blank" rel="noopener">Bora criar?</a>
-            <a className="k-btn k-btn-out" href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil no Instagram</a>
-          </div>
-        </div>
+    <section id="sobre" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }} ref={raiz}>
+      <div className="k-abtopo">
+        <h2 className="k-abola">Olá, eu sou o Kayo.</h2>
+        <figure className="k-abfoto">
+          <img src={I.retrato} alt="Kayo Marques" loading="lazy" />
+        </figure>
       </div>
+
+      <dl className="k-ablista">
+        <div className="k-abrow">
+          <span className="k-abln" aria-hidden="true" />
+          <dt>Sobre</dt>
+          <dd>
+            <p className="k-abfrase">{FRASE.split(' ').map((w, i) => <span key={i} className="k-abw">{w} </span>)}</p>
+          </dd>
+        </div>
+        <div className="k-abrow">
+          <span className="k-abln" aria-hidden="true" />
+          <dt>O que eu faço</dt>
+          <dd>
+            <ul className="k-abfaz">
+              {FAZ.map((f) => <li key={f.t}><b>{f.t}</b><span>{f.d}</span></li>)}
+            </ul>
+            <a className="k-btn k-btn-pri k-abcta" href={WHATSAPP_URL} target="_blank" rel="noopener">Bora criar?</a>
+          </dd>
+        </div>
+      </dl>
     </section>
   );
 }

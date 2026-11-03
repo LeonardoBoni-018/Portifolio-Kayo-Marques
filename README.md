@@ -30,7 +30,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | --- | --- | --- |
 | Abertura | contador e anéis em volta do selo, uma vez por sessão | Motion |
 | Hero | story que avança sozinho, pausa com mouse, foco ou botão | CSS |
-| Sobre | retrato fixo; as frases acendem e trocam a foto ao rolar | GSAP ScrollTrigger |
+| Sobre | o retrato surge de baixo, as palavras da frase ganham cor ao rolar e as divisórias se desenham | GSAP ScrollTrigger |
 | Trabalhos | o destaque do filtro desliza e os cards se reorganizam | Motion |
 | Cobertura | antes, durante e depois andam na horizontal ao rolar | GSAP ScrollTrigger |
 | Rodapé | o selo se desenha pelas linhas de construção | GSAP ScrollTrigger |
