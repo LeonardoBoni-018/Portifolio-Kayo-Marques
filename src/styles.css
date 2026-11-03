@@ -1,7 +1,7 @@
 /* Hallmark · v2.0.0 · redesign: polish + new sections · genre: editorial · theme: custom (paleta do feed do Kayo, by request) · job: chamar no WhatsApp · signature: o story que avança no primeiro screen · nav: pílula flutuante com o selo e uma ação · footer: o selo desenhado pelas guias, mast e contatos */
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, fotos ainda são stand-ins; o Sobre virou uma apresentação editorial (olá, retrato e linhas com rótulo) */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, fotos ainda são stand-ins; o Sobre virou um mosaico em que cada bloco carrega um fato */
 /* Hallmark · waive 65 · creme, serifa e blush vêm do feed real do @kayomaarques, pedido do cliente */
-/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: palavras do Sobre ganhando cor, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
+/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: retrato do Sobre se afastando, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
 /* Hallmark · waive 83 · as fotos são o portfólio do próprio Kayo (hoje stand-ins de exemplo até chegarem as dele) */
 
 /* ===== tokens: paleta tirada do feed (off-white, areia, blush, sálvia, cacau) ===== */
@@ -128,22 +128,32 @@ img,video{display:block}
 .k-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px}
 
 
-/* ===== sobre: apresentação editorial ===== */
-.k-abtopo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:end}
-.k-abola{font-family:var(--font-display);font-weight:400;font-size:clamp(52px,7vw,104px);line-height:.98;letter-spacing:-.025em;text-wrap:balance;overflow-wrap:break-word;min-width:0;padding-bottom:8px}
-.k-abfoto{margin:0;width:100%;max-width:460px;justify-self:end;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--media);box-shadow:0 40px 64px -40px var(--shadow)}
-.k-abfoto img{width:100%;height:100%;object-fit:cover}
-.k-ablista{margin:72px 0 0;padding:0}
-.k-abrow{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;padding:40px 0}
-.k-abln{position:absolute;top:0;left:0;right:0;height:1px;background:var(--line);transform-origin:left}
-.k-abrow dt{font-size:14px;font-weight:700;color:var(--muted);padding-top:8px}
-.k-abrow dd{margin:0;min-width:0}
-.k-abfrase{font-family:var(--font-display);font-size:clamp(28px,3vw,44px);line-height:1.15;letter-spacing:-.01em;text-wrap:pretty}
-.k-abfaz{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.k-abfaz li{display:flex;flex-direction:column;gap:8px}
-.k-abfaz b{font-family:var(--font-display);font-weight:400;font-size:24px}
-.k-abfaz span{font-size:15px;line-height:1.55;color:var(--muted)}
-.k-abcta{margin-top:40px}
+/* ===== sobre: mosaico (retrato, apresentação, seguidores, bastidores, o que faz) ===== */
+.k-bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.k-bc{position:relative;margin:0;border-radius:24px;overflow:hidden}
+.k-bretrato,.k-bbast{background:var(--media);color:var(--onMedia);isolation:isolate}
+.k-bretrato img,.k-bbast img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.k-bretrato{grid-column:1/6;grid-row:1/3;min-height:580px}
+.k-bretrato .k-sb{height:40%}
+.k-rcap{position:absolute;left:20px;right:20px;bottom:20px;z-index:2;display:flex;align-items:center;gap:12px}
+.k-rselo{flex:none;background:var(--onMedia);color:var(--media);border-radius:50%}
+.k-rcap b{display:block;font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.1}
+.k-rcap small{display:block;font-size:13px;font-weight:600;color:var(--onMediaSoft);margin-top:2px}
+.k-bola{grid-column:6/13;grid-row:1;background:var(--paper2);padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+.k-bola p{font-family:var(--font-display);font-size:clamp(22px,2vw,28px);line-height:1.3;max-width:34ch;text-wrap:pretty}
+.k-bnum{grid-column:6/9;grid-row:2;min-height:280px;background:var(--ink);color:var(--onInk);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;text-decoration:none}
+.k-bnumv{font-family:var(--font-display);font-size:clamp(56px,6vw,88px);line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.k-bnumt{font-size:15px;line-height:1.45;max-width:22ch}
+.k-bnuml{font-size:14px;font-weight:700;margin-top:12px;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .25s ease}
+.k-bnum:hover .k-bnuml{text-decoration-color:currentColor}
+.k-bbast{grid-column:9/13;grid-row:2;min-height:280px}
+.k-bbast figcaption{position:absolute;left:20px;right:20px;bottom:20px;z-index:2;font-family:var(--font-display);font-size:22px;line-height:1.15;text-wrap:balance}
+.k-bfaz{grid-column:1/13;grid-row:3;background:var(--blushSoft);color:var(--blushInk);padding:28px 32px;display:flex;align-items:center;gap:32px}
+.k-bfaz ul{list-style:none;margin:0;padding:0;flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.k-bfaz li{display:flex;flex-direction:column;gap:4px;padding-left:20px;border-left:1px solid color-mix(in srgb,var(--blushInk) 28%,transparent)}
+.k-bfaz b{font-family:var(--font-display);font-weight:400;font-size:24px}
+.k-bfaz span{font-size:14px;line-height:1.5}
+.k-bfazbtn{flex:none;background:var(--blushInk);color:var(--blushSoft)}
 
 /* ===== trabalhos ===== */
 .k-filters{display:flex;gap:8px;overflow-x:auto;margin-top:32px;padding-bottom:4px;scrollbar-width:none}
@@ -244,10 +254,13 @@ img,video{display:block}
 .k-hgrid{grid-template-columns:minmax(0,1fr);gap:40px}
 .k-hero{padding-top:40px}
 .k-cgrid{grid-template-columns:minmax(0,1fr);gap:40px}
-.k-abtopo,.k-abrow{grid-template-columns:minmax(0,1fr)}
-.k-abtopo{gap:32px}
-.k-abrow{gap:16px;padding:32px 0}
-.k-abfoto{justify-self:start}
+.k-bento{grid-template-columns:repeat(6,minmax(0,1fr))}
+.k-bretrato{grid-column:1/7;grid-row:auto;min-height:0;aspect-ratio:4/5}
+.k-bola{grid-column:1/7;grid-row:auto;padding:28px}
+.k-bnum{grid-column:1/4;grid-row:auto;min-height:240px}
+.k-bbast{grid-column:4/7;grid-row:auto;min-height:240px}
+.k-bfaz{grid-column:1/7;grid-row:auto;flex-direction:column;align-items:stretch;padding:24px}
+.k-bfaz ul{grid-template-columns:minmax(0,1fr);gap:16px}
 .k-reply{width:100%;max-width:440px;margin:0 auto}
 .k-cobp{grid-template-columns:minmax(0,1fr);gap:20px}
 }
@@ -271,9 +284,11 @@ img,video{display:block}
 .k-cobtrilho{padding:0 20px;gap:48px}
 .k-cobmid{height:auto;aspect-ratio:4/5}
 .k-flds{grid-template-columns:minmax(0,1fr)}
-.k-ablista{margin-top:48px}
-.k-abfaz{grid-template-columns:minmax(0,1fr);gap:20px}
-.k-abcta{width:100%}
+.k-bento{gap:12px}
+.k-bc{border-radius:20px}
+.k-bnum,.k-bbast{padding:20px;min-height:220px}
+.k-bbast figcaption{left:16px;right:16px;bottom:16px;font-size:18px}
+.k-bnumt{font-size:14px}
 .k-foot{margin-top:88px}
 .k-dock{display:flex;gap:8px;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;padding:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom));background:var(--navbg);border:1px solid var(--line);border-radius:999px;box-shadow:0 20px 40px -24px var(--shadow)}
 .k-dock .k-btn{flex:1;height:48px;padding:0 16px;font-size:15px}
