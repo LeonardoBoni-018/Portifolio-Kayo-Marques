@@ -41,6 +41,24 @@ export default function Cobertura() {
         barras.current.forEach((b) => { if (b) b.style.transform = ''; });
       };
     });
+    // no celular o trilho vira coluna: cada capítulo ganha a foto se aproximando devagar
+    // conforme a rolagem e o texto subindo uma vez ao aparecer
+    mm.add('(max-width: 760px) and (prefers-reduced-motion: no-preference)', () => {
+      const q = gsap.utils.selector(sec.current);
+      const sts = [];
+      q('.k-cobp').forEach((p) => {
+        const midia = p.querySelector('.k-cobmid img, .k-cobmid video');
+        if (midia) {
+          sts.push(gsap.fromTo(midia, { scale: 1.16 }, {
+            scale: 1, ease: 'none', scrollTrigger: { trigger: p, start: 'top bottom', end: 'center center', scrub: 0.6 }
+          }));
+        }
+        sts.push(gsap.fromTo(p.querySelector('.k-cobtx'), { opacity: 0, y: 24 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: p.querySelector('.k-cobtx'), start: 'top 88%', once: true }
+        }));
+      });
+      return () => sts.forEach((t) => { t.scrollTrigger && t.scrollTrigger.kill(); });
+    });
     return () => mm.revert();
   }, []);
 

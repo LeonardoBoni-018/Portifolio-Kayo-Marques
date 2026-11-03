@@ -20,7 +20,13 @@ export default function SeloConstrucao() {
         .fromTo(q('.k-barra'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.25 }, 0.7)
         .fromTo(q('.k-letra'), { opacity: 0, y: 3 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.25 }, 0.8)
         .to(q('.k-gd, .k-gc'), { opacity: 0.3, duration: 0.3 }, 1);
-      return () => tl.scrollTrigger && tl.scrollTrigger.kill();
+      // o "kayo marques" grande sobe de dentro da sua linha logo depois do selo
+      const mast = document.querySelector('.k-mastin');
+      const tm = mast && gsap.fromTo(mast, { yPercent: 105 }, {
+        yPercent: 0, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: mast.parentElement, start: 'top 95%', once: true }
+      });
+      return () => { tl.scrollTrigger && tl.scrollTrigger.kill(); if (tm) tm.scrollTrigger && tm.scrollTrigger.kill(); };
     });
     return () => mm.revert();
   }, []);

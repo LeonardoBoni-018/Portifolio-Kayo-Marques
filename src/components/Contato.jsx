@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap, MQ_MOVIMENTO } from '../lib/gsap.js';
 import { FRASES, I, INSTAGRAM_URL, TIPOS, WHATSAPP_URL, waTexto } from '../data.js';
 import { IconEnviar } from './Icons.jsx';
 import { Selo } from './Logo.jsx';
@@ -9,6 +10,19 @@ export default function Contato() {
   const [nome, setNome] = useState('');
   const [data, setData] = useState('');
   const [msg, setMsg] = useState('');
+  const barra = useRef(null);
+
+  // a terceira barrinha do story do formulário enche enquanto ele entra na tela
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add(MQ_MOVIMENTO, () => {
+      gsap.fromTo(barra.current, { scaleX: 0 }, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: barra.current.closest('form'), start: 'top 85%', end: 'center 45%', scrub: 0.5 }
+      });
+    });
+    return () => mm.revert();
+  }, []);
 
   let dia = '';
   if (data) { const p = data.split('-'); if (p.length === 3) dia = ' para o dia ' + p[2] + '/' + p[1] + '/' + p[0]; }
@@ -31,7 +45,7 @@ export default function Contato() {
 
         <form className="k-reply k-rv" style={{ '--d': '.1s' }} onSubmit={(e) => e.preventDefault()} aria-label="Responder ao story do Kayo">
           <img className="k-bg" src={I.casVestido} alt="" />
-          <div className="k-bars"><span className="k-sg done"><i /></span><span className="k-sg done"><i /></span><span className="k-sg"><i /></span></div>
+          <div className="k-bars"><span className="k-sg done"><i /></span><span className="k-sg done"><i /></span><span className="k-sg"><i ref={barra} /></span></div>
           <div className="k-meta"><span className="k-av"><Selo size={32} /></span><span>kayomaarques</span><small>agora</small></div>
           <p className="k-q" id="k-q">O que você quer criar?</p>
           <div className="k-opts" role="group" aria-labelledby="k-q">

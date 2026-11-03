@@ -68,6 +68,8 @@ img,video{display:block}
 .k-ib:active{transform:scale(.94)}
 .k-menubtn{display:none}
 .k-navwa{height:44px;padding:0 20px;font-size:14px}
+.k-navprog{position:absolute;left:28px;right:28px;bottom:-1px;height:2px;overflow:hidden;pointer-events:none}
+.k-navprog i{display:block;height:100%;background:var(--blush);transform:scaleX(0);transform-origin:left;border-radius:2px}
 .k-menu{position:absolute;left:0;right:0;top:calc(100% + 8px);background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:8px;display:flex;flex-direction:column;box-shadow:0 28px 48px -28px var(--shadow)}
 .k-menu a{padding:16px;border-radius:16px;font-weight:600;text-decoration:none}
 .k-menu a:hover{background:var(--paper2)}
@@ -227,7 +229,8 @@ img,video{display:block}
 .k-anel{fill:none;stroke:var(--blush);stroke-width:3;stroke-dasharray:1;stroke-dashoffset:0}
 .k-barra{stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
 .k-letra{font-family:var(--font-display);font-size:25px;fill:var(--ink)}
-.k-mast{font-family:var(--font-display);font-size:clamp(48px,10vw,148px);line-height:.95;letter-spacing:-.03em;overflow-wrap:break-word;min-width:0}
+.k-mast{font-family:var(--font-display);font-size:clamp(48px,10vw,148px);line-height:.95;letter-spacing:-.03em;overflow-wrap:break-word;min-width:0;overflow:hidden;padding-bottom:.14em}
+.k-mastin{display:inline-block}
 .k-frow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:24px;color:var(--muted);font-size:14px;font-weight:600}
 .k-frow a{text-decoration:none}
 .k-frow a:hover{color:var(--ink)}

@@ -98,7 +98,7 @@ export default function App() {
 
       <footer className="k-wrap k-foot">
         <SeloConstrucao />
-        <p className="k-mast">kayo marques</p>
+        <p className="k-mast"><span className="k-mastin">kayo marques</span></p>
         <div className="k-frow">
           <span>Videomaker, fotógrafo e storymaker</span>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil seguidores no Instagram</a>

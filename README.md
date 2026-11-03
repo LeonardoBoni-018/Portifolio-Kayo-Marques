@@ -28,12 +28,14 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 
 | Seção | Movimento | Biblioteca |
 | --- | --- | --- |
+| Menu | uma linha blush na base enche conforme a página é lida, como a barrinha de story | GSAP ScrollTrigger |
 | Abertura | contador e anéis em volta do selo, uma vez por sessão | Motion |
 | Hero | story que avança sozinho, pausa com mouse, foco ou botão | CSS |
 | Sobre | mosaico: os blocos entram em sequência, o retrato se afasta devagar ao rolar e o número de seguidores no selo de perfil conta | GSAP ScrollTrigger |
-| Trabalhos | o destaque do filtro desliza e os cards se reorganizam | Motion |
-| Cobertura | antes, durante e depois andam na horizontal ao rolar | GSAP ScrollTrigger |
-| Rodapé | o selo se desenha pelas linhas de construção | GSAP ScrollTrigger |
+| Trabalhos | os cards abrem como cortina na primeira passagem; o destaque do filtro desliza e os cards se reorganizam | GSAP + Motion |
+| Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo | GSAP ScrollTrigger |
+| Contato | a terceira barrinha do story do formulário enche ao rolar | GSAP ScrollTrigger |
+| Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 
 Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.
 No celular, a Cobertura vira uma coluna.

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
-import { ScrollTrigger } from '../lib/gsap.js';
+import { gsap, MQ_MOVIMENTO, ScrollTrigger } from '../lib/gsap.js';
 import { CATS } from '../data.js';
 import { useSincronizarMidia } from '../lib/hooks.js';
 import { IconPlay } from './Icons.jsx';
@@ -33,10 +33,27 @@ export default function Trabalhos({ onAbrir }) {
     return () => clearTimeout(id);
   }, [filtro]);
 
+  // na primeira passagem, cada card abre como uma cortina de baixo para cima, em sequência.
+  // Só clip-path e opacity: o transform fica livre para o Motion reorganizar o feed.
+  const raiz = useRef(null);
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add(MQ_MOVIMENTO, () => {
+      const cards = raiz.current.querySelectorAll('.k-card');
+      gsap.set(cards, { clipPath: 'inset(22% 0% 0% 0%)', opacity: 0 });
+      const sts = ScrollTrigger.batch(cards, {
+        start: 'top 90%', once: true,
+        onEnter: (lote) => gsap.to(lote, { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08, clearProps: 'clipPath' })
+      });
+      return () => { sts.forEach((s) => s.kill()); gsap.set(cards, { clearProps: 'clipPath,opacity' }); };
+    });
+    return () => mm.revert();
+  }, []);
+
   const feed = itensDoFeed(filtro);
 
   return (
-    <section id="trabalhos" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }}>
+    <section id="trabalhos" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }} ref={raiz}>
       <div className="k-head">
         <h2 className="k-h2 k-rv">Um olhar para cada tipo de projeto</h2>
         <p className="k-sub k-rv" style={{ '--d': '.08s' }}>Filtre por tipo e toque num trabalho para assistir em tela cheia.</p>
