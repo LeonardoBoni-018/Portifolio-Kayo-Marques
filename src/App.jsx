@@ -6,7 +6,6 @@ import { ScrollTrigger } from './lib/gsap.js';
 import Abertura, { deveAbrir } from './components/Abertura.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
-import Reel from './components/Reel.jsx';
 import Sobre from './components/Sobre.jsx';
 import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
@@ -91,7 +90,6 @@ export default function App() {
 
       <main>
         <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
-        <Reel onAbrir={abrirV} />
         <Sobre />
         <Trabalhos onAbrir={abrirV} />
         <Cobertura />

@@ -22,12 +22,23 @@ export default function Sobre() {
     mm.add(MQ_MOVIMENTO, () => {
       lista.current.classList.add('anima');
       const itens = [...lista.current.querySelectorAll('li')];
-      const sts = itens.map((li, i) => ScrollTrigger.create({
-        trigger: li, start: 'top 58%', end: 'bottom 58%',
-        onEnter: () => setAtivo(i), onEnterBack: () => setAtivo(i),
-        onLeaveBack: () => { if (i === 0) setAtivo(-1); }
-      }));
-      return () => { sts.forEach((s) => s.kill()); lista.current?.classList.remove('anima'); setAtivo(-1); };
+      // a barrinha de story de cada linha enche enquanto ela cruza o meio da tela
+      const sts = itens.map((li, i) => {
+        const barra = li.querySelector('.k-lbar i');
+        return ScrollTrigger.create({
+          trigger: li, start: 'top 58%', end: 'bottom 58%',
+          onEnter: () => setAtivo(i), onEnterBack: () => setAtivo(i),
+          onLeaveBack: () => { if (i === 0) setAtivo(-1); },
+          onUpdate: (self) => { barra.style.transform = `scaleX(${self.progress.toFixed(3)})`; },
+          onLeave: () => { barra.style.transform = 'scaleX(1)'; }
+        });
+      });
+      return () => {
+        sts.forEach((s) => s.kill());
+        lista.current?.querySelectorAll('.k-lbar i').forEach((b) => { b.style.transform = ''; });
+        lista.current?.classList.remove('anima');
+        setAtivo(-1);
+      };
     });
     return () => mm.revert();
   }, []);
@@ -55,7 +66,13 @@ export default function Sobre() {
           <h2 className="k-h2 k-rv">Quem está por trás de cada história</h2>
           <p className="k-sub k-rv" style={{ marginTop: 20 }}>Sou o Kayo Marques. Registro casamentos, eventos e conteúdos para marcas, em vídeo e foto, e coloco tudo no ar em tempo real. Criatividade é a prioridade por aqui.</p>
           <ul className="k-linhas" ref={lista} aria-label="O que passa pelas minhas lentes">
-            {LINHAS.map((l, i) => <li key={l.t} className={i === ativo ? 'on' : ''}>{l.t}</li>)}
+            {LINHAS.map((l, i) => (
+              <li key={l.t} className={i === ativo ? 'on' : ''}>
+                <span className="k-lc">{l.cap}</span>
+                <span className="k-lt">{l.t}</span>
+                <span className="k-lbar" aria-hidden="true"><i /></span>
+              </li>
+            ))}
           </ul>
           <div className="k-ctas">
             <a className="k-btn k-btn-pri" href={WHATSAPP_URL} target="_blank" rel="noopener">Bora criar?</a>

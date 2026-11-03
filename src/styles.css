@@ -1,7 +1,7 @@
-/* Hallmark · v2.0.0 · redesign: polish + new sections · genre: editorial · theme: custom (paleta do feed do Kayo, by request) · job: chamar no WhatsApp · signature: o story que avança no primeiro screen, e o reel que vira tela cheia ao rolar · nav: pílula flutuante com o selo e uma ação · footer: o selo desenhado pelas guias, mast e contatos */
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R3 V5 · weakest: R, quatro movimentos ligados ao scroll; cada seção tem um só e nenhum se repete */
+/* Hallmark · v2.0.0 · redesign: polish + new sections · genre: editorial · theme: custom (paleta do feed do Kayo, by request) · job: chamar no WhatsApp · signature: o story que avança no primeiro screen · nav: pílula flutuante com o selo e uma ação · footer: o selo desenhado pelas guias, mast e contatos */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, fotos ainda são stand-ins; o reel 3D saiu por repetir o vídeo vertical do story */
 /* Hallmark · waive 65 · creme, serifa e blush vêm do feed real do @kayomaarques, pedido do cliente */
-/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: reel (Three.js), linhas do Sobre, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
+/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: linhas do Sobre, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
 /* Hallmark · waive 83 · as fotos são o portfólio do próprio Kayo (hoje stand-ins de exemplo até chegarem as dele) */
 
 /* ===== tokens: paleta tirada do feed (off-white, areia, blush, sálvia, cacau) ===== */
@@ -127,21 +127,6 @@ img,video{display:block}
 .k-sub{font-size:17px;line-height:1.6;color:var(--muted);max-width:44ch}
 .k-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px}
 
-/* ===== reel: o vídeo que vira tela cheia (Three.js) ===== */
-.k-reel{position:relative;margin-top:96px;--meia:calc((max(100svh,560px) - 64px) * .86 * 9 / 32 + 28px)}
-.k-reelpin{position:relative;height:100svh;min-height:560px;overflow:hidden}
-.k-reel.anima{height:280vh}
-.k-reel.anima .k-reelpin{position:sticky;top:0}
-.k-reelpalco{position:absolute;top:64px;right:0;bottom:0;left:0}
-.k-reelvid{position:absolute;left:50%;top:50%;height:86%;width:auto;aspect-ratio:9/16;translate:-50% -50%;border-radius:22px;object-fit:cover;background:var(--media)}
-.k-reel.gl .k-reelvid{opacity:0}
-.k-reelcv{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
-.k-reelh{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;pointer-events:none;font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4.2vw,68px);line-height:1;letter-spacing:-.02em}
-.k-reell,.k-reelr{position:absolute;top:calc(50% + 32px);translate:0 -50%;white-space:nowrap}
-.k-reell{right:calc(50% + var(--meia))}
-.k-reelr{left:calc(50% + var(--meia))}
-.k-reelcap{position:absolute;left:max(32px,calc((100% - 1116px) / 2));bottom:40px;z-index:3;max-width:280px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;opacity:var(--fim,1);translate:0 calc((1 - var(--fim,1)) * 16px)}
-.k-reelcap p{font-size:16px;line-height:1.5;color:var(--muted)}
 
 /* ===== sobre: retrato fixo e as linhas que acendem ===== */
 .k-sgrid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:72px;align-items:start}
@@ -155,11 +140,16 @@ img,video{display:block}
 .k-rcap b{display:block;font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.1}
 .k-rcap small{display:block;font-size:13px;font-weight:600;color:var(--onMediaSoft);margin-top:2px}
 .k-stexto{padding-top:24px}
-.k-linhas{list-style:none;margin:48px 0 0;padding:0;display:flex;flex-direction:column;gap:20px}
-.k-linhas li{font-family:var(--font-display);font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
-.k-linhas.anima{gap:clamp(40px,9vh,88px);padding-bottom:12vh}
-.k-linhas.anima li{color:var(--dim);transition:color .35s ease}
-.k-linhas.anima li.on{color:var(--ink)}
+.k-linhas{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line)}
+.k-linhas li{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr);align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.k-lc{font-size:13px;font-weight:700;color:var(--muted)}
+.k-lt{font-family:var(--font-display);font-size:clamp(24px,2.4vw,34px);line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+.k-lbar{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden}
+.k-lbar i{display:block;height:100%;background:var(--blush);transform:scaleX(0);transform-origin:left}
+.k-linhas.anima li{padding:clamp(28px,5vh,44px) 0}
+.k-linhas.anima .k-lt{color:var(--dim);transition:color .35s ease}
+.k-linhas.anima li.on .k-lt{color:var(--ink)}
+.k-linhas.anima li.on .k-lc{color:var(--ink)}
 
 /* ===== trabalhos ===== */
 .k-filters{display:flex;gap:8px;overflow-x:auto;margin-top:32px;padding-bottom:4px;scrollbar-width:none}
@@ -278,14 +268,8 @@ img,video{display:block}
 .k-lead{font-size:17px}
 .k-ctas .k-btn{flex:1 1 140px}
 .k-stagew{max-width:340px}
-.k-reel{margin-top:64px}
-.k-reelpalco{top:176px;bottom:140px}
-.k-reelvid{height:90%}
-.k-reelh{top:92px;left:20px;right:20px;bottom:auto}
-.k-reell,.k-reelr{position:static;display:block;translate:none}
-.k-reelcap{left:20px;right:20px;bottom:92px;max-width:none;flex-direction:row;align-items:center;justify-content:space-between}
-.k-reelcap p{display:none}
-.k-linhas li{font-size:28px}
+.k-linhas li{grid-template-columns:minmax(0,1fr);gap:6px}
+.k-lt{font-size:26px}
 .k-feed{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:200px;gap:12px}
 .k-card{border-radius:16px}
 .k-ci{left:12px;right:12px;bottom:12px}
