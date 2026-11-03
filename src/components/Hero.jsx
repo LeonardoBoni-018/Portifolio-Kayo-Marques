@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { CATS, HERO, WHATSAPP_URL } from '../data.js';
 import { segs, useSincronizarMidia, useStepper } from '../lib/hooks.js';
-import { IconDir, IconEsq, IconSalvar } from './Icons.jsx';
+import { IconDir, IconEsq, IconPausa, IconSalvar, IconTocar } from './Icons.jsx';
 import Midia from './Midia.jsx';
 import { Selo } from './Logo.jsx';
 
 // HERO: a frase da bio do Kayo + o story que avança com toque
 export default function Hero({ pausado, onAbrir }) {
-  const [h, tick, ir] = useStepper(HERO.length, 5000, pausado);
+  // para sozinho com o mouse ou o foco em cima, e tem um botão de pausa para quem quiser ler com calma
+  const [parado, setParado] = useState(false);
+  const [sobre, setSobre] = useState(false);
+  const [h, tick, ir] = useStepper(HERO.length, 5000, pausado || parado || sobre);
   const [salvos, setSalvos] = useState({});
   useSincronizarMidia();
 
@@ -28,7 +31,9 @@ export default function Hero({ pausado, onAbrir }) {
 
         <div className="k-ld" style={{ '--d': '.14s' }}>
           <div className="k-stagew">
-            <div className="k-story" style={{ '--dur': '5s' }}>
+            <div className={'k-story' + (pausado || parado || sobre ? ' parado' : '')} style={{ '--dur': '5s' }}
+              onMouseEnter={() => setSobre(true)} onMouseLeave={() => setSobre(false)}
+              onFocus={() => setSobre(true)} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setSobre(false); }}>
               {slides.map((s, i) => (
                 <div key={i} className={i === h ? 'k-sl on' : 'k-sl'}>
                   <Midia img={s.it.img} v={s.it.v} alt={s.it.t} />
@@ -48,6 +53,7 @@ export default function Hero({ pausado, onAbrir }) {
                     <p className="k-cd">{s.d}</p>
                     <div className="k-cact">
                       <button type="button" className="k-cbtn" onClick={() => onAbrir(s.c, s.i)}>Ver destaque</button>
+                      <button type="button" className="k-cic" onClick={() => setParado((p) => !p)} aria-label={parado ? 'Continuar stories' : 'Pausar stories'} aria-pressed={parado}>{parado ? <IconTocar /> : <IconPausa />}</button>
                       <button type="button" className="k-cic" onClick={() => setSalvos((m) => ({ ...m, [h]: !m[h] }))} aria-label="Salvar story" aria-pressed={salvo}><IconSalvar cheio={salvo} /></button>
                     </div>
                   </div>

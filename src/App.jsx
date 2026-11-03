@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, MotionConfig } from 'motion/react';
 import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data.js';
 import { iniciarMidia, pararMidia } from './lib/media.js';
+import { ScrollTrigger } from './lib/gsap.js';
+import Abertura, { deveAbrir } from './components/Abertura.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
+import Reel from './components/Reel.jsx';
 import Sobre from './components/Sobre.jsx';
+import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
 import Cobertura from './components/Cobertura.jsx';
 import Contato from './components/Contato.jsx';
 import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
-import { Selo } from './components/Logo.jsx';
 
 const CHAVE_TEMA = 'kayo-tema-v2';
 
@@ -38,6 +42,16 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [vis, setVis] = useState({ v: -1, vi: 0, vt: 0 });
   const [vEpoca, setVEpoca] = useState(0);
+  const [abrindo, setAbrindo] = useState(deveAbrir);
+  const fimAbertura = useCallback(() => setAbrindo(false), []);
+
+  // fotos e fontes mudam a altura das seções: as posições do scroll são recalculadas no fim do carregamento
+  useEffect(() => {
+    const refaz = () => ScrollTrigger.refresh();
+    if (document.readyState === 'complete') refaz(); else window.addEventListener('load', refaz);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
+    return () => window.removeEventListener('load', refaz);
+  }, []);
   const escuro = tema === 'escuro';
   const vAberto = vis.v >= 0;
 
@@ -69,22 +83,24 @@ export default function App() {
   const fecharV = () => setVis((s) => ({ ...s, v: -1 }));
 
   return (
-    <div className={'k-app ' + (escuro ? 'dark' : '') + (io ? ' io' : '')} id="topo">
+    <MotionConfig reducedMotion="user">
+    <div className={'k-app ' + (escuro ? 'dark' : '') + (io ? ' io' : '') + (abrindo ? ' espera' : '')} id="topo">
+      <AnimatePresence>{abrindo && <Abertura key="abertura" onFim={fimAbertura} />}</AnimatePresence>
+
       <Nav escuro={escuro} onTema={toggleTema} menu={menu} onMenu={() => setMenu((m) => !m)} onFechaMenu={() => setMenu(false)} />
 
       <main>
-        <Hero pausado={vAberto} onAbrir={abrirV} />
+        <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
+        <Reel onAbrir={abrirV} />
         <Sobre />
         <Trabalhos onAbrir={abrirV} />
-        <Cobertura pausado={vAberto} />
+        <Cobertura />
         <Contato />
       </main>
 
       <footer className="k-wrap k-foot">
-        <div className="k-mastrow">
-          <Selo className="k-mastselo" size={120} titulo="Logo Kayo Marques" />
-          <p className="k-mast">kayo marques</p>
-        </div>
+        <SeloConstrucao />
+        <p className="k-mast">kayo marques</p>
         <div className="k-frow">
           <span>Videomaker, fotógrafo e storymaker</span>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil seguidores no Instagram</a>
@@ -99,7 +115,10 @@ export default function App() {
         <a className="k-btn k-btn-out" href="#trabalhos">Trabalhos</a>
       </div>
 
-      {vAberto && <Visualizador v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}
+      <AnimatePresence>
+        {vAberto && <Visualizador key="visualizador" v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}
+      </AnimatePresence>
     </div>
+    </MotionConfig>
   );
 }

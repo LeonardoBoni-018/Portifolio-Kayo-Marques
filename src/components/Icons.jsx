@@ -28,6 +28,14 @@ export const IconPlay = () => (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" /></svg>
 );
 
+export const IconPausa = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+);
+
+export const IconTocar = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+);
+
 export const IconEnviar = () => (
   <svg width="19" height="19" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" {...base}><path d="M21 3L10.5 13.5" /><path d="M21 3l-6.5 18-4-7.5L3 9.5z" /></svg>
 );

@@ -20,11 +20,24 @@ public/logo/           logo do Kayo em SVG (selo e logo completa, versões escur
 public/favicon.svg     ícone da aba
 src/data.js            todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
 src/styles.css         estilos e temas claro/escuro
-src/components/        Nav, Hero, Sobre, Trabalhos, Cobertura, Contato, Visualizador, Logo
-src/lib/               GSAP Flip, revelação ao rolar e controle dos vídeos
+src/components/        Abertura, Nav, Hero, Reel, Sobre, Trabalhos, Cobertura, Contato, Visualizador, Logo, SeloConstrucao
+src/lib/               GSAP ScrollTrigger, Three.js do Reel, revelação ao rolar e controle dos vídeos
 ```
 
-Ordem da página: story de abertura, Sobre o Kayo, Trabalhos (feed com filtros), Cobertura (antes, durante e depois), Contato.
+Ordem da página e o movimento de cada seção (um por seção, nenhum repetido):
+
+| Seção | Movimento | Biblioteca |
+| --- | --- | --- |
+| Abertura | contador e anéis em volta do selo, uma vez por sessão | Motion |
+| Hero | story que avança sozinho, pausa com mouse, foco ou botão | CSS |
+| Reel | o vídeo vertical, curvo e pequeno, se endireita e cresce ao rolar | Three.js + GSAP ScrollTrigger |
+| Sobre | retrato fixo; as frases acendem e trocam a foto ao rolar | GSAP ScrollTrigger |
+| Trabalhos | o destaque do filtro desliza e os cards se reorganizam | Motion |
+| Cobertura | antes, durante e depois andam na horizontal ao rolar | GSAP ScrollTrigger |
+| Rodapé | o selo se desenha pelas linhas de construção | GSAP ScrollTrigger |
+
+Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.
+No celular, a Cobertura vira uma coluna.
 
 ## Logo
 

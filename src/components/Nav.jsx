@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'motion/react';
 import { WHATSAPP_URL } from '../data.js';
 import { IconLua, IconMenu, IconSol } from './Icons.jsx';
 import { Logo } from './Logo.jsx';
@@ -22,14 +23,17 @@ export default function Nav({ escuro, onTema, menu, onMenu, onFechaMenu }) {
             <IconMenu />
           </button>
         </div>
+        <AnimatePresence>
         {menu && (
-          <div className="k-menu">
+          <motion.div className="k-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}>
             <a href="#sobre" onClick={onFechaMenu}>Sobre o Kayo</a>
             <a href="#trabalhos" onClick={onFechaMenu}>Trabalhos</a>
             <a href="#cobertura" onClick={onFechaMenu}>Como funciona a cobertura</a>
             <a href="#contato" onClick={onFechaMenu}>Contato</a>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </nav>
     </div>
   );

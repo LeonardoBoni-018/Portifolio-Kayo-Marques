@@ -16,6 +16,11 @@ export function useStepper(n, ms, pausado) {
     return () => clearInterval(id);
   }, [n, ms, epoca]);
 
+  // ao voltar a tocar, a barrinha recomeça junto com o relógio
+  useEffect(() => {
+    if (!pausado) { setSt((s) => ({ ...s, tick: s.tick + 1 })); setEpoca((e) => e + 1); }
+  }, [pausado]);
+
   const ir = useCallback((i) => {
     setSt((s) => ({ i: ((i % n) + n) % n, tick: s.tick + 1 }));
     setEpoca((e) => e + 1);
