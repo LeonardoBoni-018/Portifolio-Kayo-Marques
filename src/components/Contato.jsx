@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FRASES, I, INSTAGRAM_URL, TIPOS, WHATSAPP_URL, waTexto } from '../data.js';
 import { IconEnviar } from './Icons.jsx';
+import { Selo } from './Logo.jsx';
 
 // CONTATO: "responda o story" monta a mensagem que chega pronta no WhatsApp
 export default function Contato() {
@@ -31,7 +32,7 @@ export default function Contato() {
         <form className="k-reply k-rv" style={{ '--d': '.1s' }} onSubmit={(e) => e.preventDefault()} aria-label="Responder ao story do Kayo">
           <img className="k-bg" src={I.casVestido} alt="" />
           <div className="k-bars"><span className="k-sg done"><i /></span><span className="k-sg done"><i /></span><span className="k-sg"><i /></span></div>
-          <div className="k-meta"><span className="k-av">KM</span><span>kayomaarques</span><small>agora</small></div>
+          <div className="k-meta"><span className="k-av"><Selo size={32} /></span><span>kayomaarques</span><small>agora</small></div>
           <p className="k-q" id="k-q">O que você quer criar?</p>
           <div className="k-opts" role="group" aria-labelledby="k-q">
             {TIPOS.map((label) => (

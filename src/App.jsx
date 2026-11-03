@@ -3,12 +3,13 @@ import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data.js';
 import { iniciarMidia, pararMidia } from './lib/media.js';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
-import Destaques from './components/Destaques.jsx';
-import Historias from './components/Historias.jsx';
+import Sobre from './components/Sobre.jsx';
+import Trabalhos from './components/Trabalhos.jsx';
 import Cobertura from './components/Cobertura.jsx';
 import Contato from './components/Contato.jsx';
 import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
+import { Selo } from './components/Logo.jsx';
 
 const CHAVE_TEMA = 'kayo-tema-v2';
 
@@ -73,14 +74,17 @@ export default function App() {
 
       <main>
         <Hero pausado={vAberto} onAbrir={abrirV} />
-        <Destaques onAbrir={abrirV} />
-        <Historias pausado={vAberto} onAbrir={abrirV} />
+        <Sobre />
+        <Trabalhos onAbrir={abrirV} />
         <Cobertura pausado={vAberto} />
         <Contato />
       </main>
 
       <footer className="k-wrap k-foot">
-        <p className="k-mast">kayo marques</p>
+        <div className="k-mastrow">
+          <Selo className="k-mastselo" size={120} titulo="Logo Kayo Marques" />
+          <p className="k-mast">kayo marques</p>
+        </div>
         <div className="k-frow">
           <span>Videomaker, fotógrafo e storymaker</span>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil seguidores no Instagram</a>
@@ -92,7 +96,7 @@ export default function App() {
       {/* BARRA FIXA (celular) */}
       <div className="k-dock">
         <a className="k-btn k-btn-pri" href={WHATSAPP_URL} target="_blank" rel="noopener"><IconWhats />WhatsApp</a>
-        <a className="k-btn k-btn-out" href="#destaques">Destaques</a>
+        <a className="k-btn k-btn-out" href="#trabalhos">Trabalhos</a>
       </div>
 
       {vAberto && <Visualizador v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}

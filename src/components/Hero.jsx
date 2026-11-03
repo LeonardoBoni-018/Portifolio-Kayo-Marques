@@ -3,6 +3,7 @@ import { CATS, HERO, WHATSAPP_URL } from '../data.js';
 import { segs, useSincronizarMidia, useStepper } from '../lib/hooks.js';
 import { IconDir, IconEsq, IconSalvar } from './Icons.jsx';
 import Midia from './Midia.jsx';
+import { Selo } from './Logo.jsx';
 
 // HERO: a frase da bio do Kayo + o story que avança com toque
 export default function Hero({ pausado, onAbrir }) {
@@ -21,7 +22,7 @@ export default function Hero({ pausado, onAbrir }) {
           <p className="k-lead k-ld" style={{ '--d': '.1s' }}>Casamentos, eventos e marcas contados em stories, em tempo real.</p>
           <div className="k-ctas k-ld" style={{ '--d': '.18s' }}>
             <a className="k-btn k-btn-pri" href={WHATSAPP_URL} target="_blank" rel="noopener">Bora criar?</a>
-            <a className="k-btn k-btn-out" href="#destaques">Ver destaques</a>
+            <a className="k-btn k-btn-out" href="#trabalhos">Ver trabalhos</a>
           </div>
         </div>
 
@@ -36,7 +37,7 @@ export default function Hero({ pausado, onAbrir }) {
               <div className="k-st" />
               <div className="k-sb" />
               <div className="k-bars">{segs(HERO.length, h, tick).map((c, i) => <span key={i} className={c}><i /></span>)}</div>
-              <div className="k-meta"><span className="k-av">KM</span><span>kayomaarques</span><small>{h + 1} de {HERO.length}</small></div>
+              <div className="k-meta"><span className="k-av"><Selo size={32} /></span><span>kayomaarques</span><small>{h + 1} de {HERO.length}</small></div>
               <button type="button" className="k-tz l" onClick={() => ir(h - 1)} aria-label="Story anterior"><span className="k-arr"><IconEsq /></span></button>
               <button type="button" className="k-tz r" onClick={() => ir(h + 1)} aria-label="Próximo story"><span className="k-arr"><IconDir /></span></button>
               <div className="k-caps">

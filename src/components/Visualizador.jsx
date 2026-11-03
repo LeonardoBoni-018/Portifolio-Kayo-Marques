@@ -2,6 +2,7 @@ import { CATS, waTexto } from '../data.js';
 import { segs, useSincronizarMidia } from '../lib/hooks.js';
 import { IconDir, IconEsq, IconFechar } from './Icons.jsx';
 import Midia from './Midia.jsx';
+import { Selo } from './Logo.jsx';
 
 // VISUALIZADOR EM TELA CHEIA: os stories de um destaque, um atrás do outro
 export default function Visualizador({ v, vi, vt, onPrev, onNext, onFechar }) {
@@ -21,7 +22,7 @@ export default function Visualizador({ v, vi, vt, onPrev, onNext, onFechar }) {
         <div className="k-sb" />
         <div className="k-bars">{segs(vc.items.length, vi, vt).map((c, i) => <span key={i} className={c}><i /></span>)}</div>
         <div className="k-meta">
-          <span className="k-av">KM</span><span>{vc.label}</span><small>{vi + 1} de {vc.items.length}</small>
+          <span className="k-av"><Selo size={32} /></span><span>{vc.label}</span><small>{vi + 1} de {vc.items.length}</small>
           <button type="button" className="k-vx" onClick={onFechar} aria-label="Fechar"><IconFechar /></button>
         </div>
         <button type="button" className="k-tz l" onClick={onPrev} aria-label="Story anterior"><span className="k-arr"><IconEsq /></span></button>

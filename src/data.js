@@ -32,7 +32,8 @@ export const I = {
   capDepois: foto('cobertura-depois'),
   pCas: foto('poster-casamento'),
   pFes: foto('poster-festa'),
-  pTr: foto('poster-tempo-real')
+  pTr: foto('poster-tempo-real'),
+  retrato: foto('kayo-retrato')
 };
 
 export const V = {
@@ -41,7 +42,7 @@ export const V = {
   tr: video('tempo-real')
 };
 
-// destaques (círculos), feed, anel 3D e visualizador saem daqui
+// trabalhos (feed com filtros), story do topo e visualizador saem daqui
 export const CATS = [
   { label: 'Casamentos', cover: I.casVeu, items: [
     { t: 'O sim no jardim', tipo: 'Reel', img: I.pCas, v: V.cas },

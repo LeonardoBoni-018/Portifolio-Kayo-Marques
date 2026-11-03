@@ -1,14 +1,15 @@
 import { WHATSAPP_URL } from '../data.js';
 import { IconLua, IconMenu, IconSol } from './Icons.jsx';
+import { Logo } from './Logo.jsx';
 
 export default function Nav({ escuro, onTema, menu, onMenu, onFechaMenu }) {
   return (
     <div className="k-wrap k-navw">
       <nav className="k-nav" aria-label="Principal">
-        <a className="k-logo" href="#topo">kayo marques</a>
+        <a className="k-logo" href="#topo" aria-label="Kayo Marques, voltar ao topo"><Logo size={40} tagline={false} /></a>
         <div className="k-links">
-          <a href="#destaques">Destaques</a>
-          <a href="#historias">Histórias</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#trabalhos">Trabalhos</a>
           <a href="#cobertura">Cobertura</a>
           <a href="#contato">Contato</a>
         </div>
@@ -23,8 +24,8 @@ export default function Nav({ escuro, onTema, menu, onMenu, onFechaMenu }) {
         </div>
         {menu && (
           <div className="k-menu">
-            <a href="#destaques" onClick={onFechaMenu}>Destaques</a>
-            <a href="#historias" onClick={onFechaMenu}>Histórias</a>
+            <a href="#sobre" onClick={onFechaMenu}>Sobre o Kayo</a>
+            <a href="#trabalhos" onClick={onFechaMenu}>Trabalhos</a>
             <a href="#cobertura" onClick={onFechaMenu}>Como funciona a cobertura</a>
             <a href="#contato" onClick={onFechaMenu}>Contato</a>
           </div>
