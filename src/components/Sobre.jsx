@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap, MQ_MOVIMENTO } from '../lib/gsap.js';
 import { I, INSTAGRAM_URL, WHATSAPP_URL } from '../data.js';
 import { Selo } from './Logo.jsx';
+import { IconInsta } from './Icons.jsx';
 
 const FAZ = [
   { t: 'Vídeo', d: 'Reels e filmes verticais com edição ágil.' },
@@ -51,13 +52,15 @@ export default function Sobre() {
         <div className="k-bc k-bola k-rv" style={{ '--d': '.08s' }}>
           <h2 className="k-h2">Olá, eu sou o Kayo.</h2>
           <p>Registro casamentos, festas, ensaios e marcas em vídeo e foto, e coloco tudo no ar enquanto o evento acontece.</p>
+          <a className="k-perfil" href={INSTAGRAM_URL} target="_blank" rel="noopener" aria-label="Instagram @kayomaarques, 11 mil seguidores">
+            <Selo size={44} className="k-perfilselo" />
+            <span className="k-perfiltx">
+              <b>@kayomaarques</b>
+              <small><span ref={num}>11</span> mil seguidores no Instagram</small>
+            </span>
+            <IconInsta />
+          </a>
         </div>
-
-        <a className="k-bc k-bnum k-rv" style={{ '--d': '.16s' }} href={INSTAGRAM_URL} target="_blank" rel="noopener">
-          <span className="k-bnumv"><span ref={num}>11</span> mil</span>
-          <span className="k-bnumt">pessoas acompanham os stories no Instagram</span>
-          <span className="k-bnuml">@kayomaarques</span>
-        </a>
 
         <figure className="k-bc k-bbast k-rv" style={{ '--d': '.24s' }}>
           <img src={I.capDurante} alt="Equipe registrando um evento" loading="lazy" />

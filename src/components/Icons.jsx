@@ -44,6 +44,10 @@ export const IconWhats = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" strokeWidth="1.9" strokeLinejoin="round" {...base}><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z" /></svg>
 );
 
+export const IconInsta = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.8" {...base}><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.2 6.8h.01" /></svg>
+);
+
 export const IconFechar = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" strokeWidth="2" {...base}><path d="M6 6l12 12M18 6L6 18" /></svg>
 );
