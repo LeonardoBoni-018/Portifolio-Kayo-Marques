@@ -1,0 +1,101 @@
+import { useCallback, useEffect, useState } from 'react';
+import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data.js';
+import { iniciarMidia, pararMidia } from './lib/media.js';
+import Nav from './components/Nav.jsx';
+import Hero from './components/Hero.jsx';
+import Destaques from './components/Destaques.jsx';
+import Historias from './components/Historias.jsx';
+import Cobertura from './components/Cobertura.jsx';
+import Contato from './components/Contato.jsx';
+import Visualizador from './components/Visualizador.jsx';
+import { IconWhats } from './components/Icons.jsx';
+
+const CHAVE_TEMA = 'kayo-tema-v2';
+
+function temaSalvo() {
+  try { return localStorage.getItem(CHAVE_TEMA) === 'escuro' ? 'escuro' : 'claro'; } catch (e) { return 'claro'; }
+}
+
+// próximo story do visualizador: acaba a categoria, passa para a seguinte; acaba tudo, fecha
+function avanca(s) {
+  if (s.v < 0) return s;
+  if (s.vi + 1 < CATS[s.v].items.length) return { ...s, vi: s.vi + 1, vt: s.vt + 1 };
+  if (s.v + 1 < CATS.length) return { v: s.v + 1, vi: 0, vt: s.vt + 1 };
+  return { ...s, v: -1 };
+}
+
+function volta(s) {
+  if (s.v < 0) return s;
+  if (s.vi > 0) return { ...s, vi: s.vi - 1, vt: s.vt + 1 };
+  if (s.v > 0) return { v: s.v - 1, vi: CATS[s.v - 1].items.length - 1, vt: s.vt + 1 };
+  return { ...s, vt: s.vt + 1 };
+}
+
+export default function App() {
+  const [tema, setTema] = useState(temaSalvo);
+  const [io, setIo] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [vis, setVis] = useState({ v: -1, vi: 0, vt: 0 });
+  const [vEpoca, setVEpoca] = useState(0);
+  const escuro = tema === 'escuro';
+  const vAberto = vis.v >= 0;
+
+  useEffect(() => {
+    setIo(iniciarMidia());
+    return pararMidia;
+  }, []);
+
+  // o visualizador avança sozinho a cada 5s; navegar à mão reinicia o relógio
+  useEffect(() => {
+    if (!vAberto) return undefined;
+    const id = setInterval(() => setVis(avanca), 5000);
+    return () => clearInterval(id);
+  }, [vAberto, vEpoca]);
+
+  const toggleTema = () => {
+    const novo = escuro ? 'claro' : 'escuro';
+    setTema(novo);
+    try { localStorage.setItem(CHAVE_TEMA, novo); } catch (e) { /* ignora */ }
+  };
+
+  const abrirV = useCallback((c, i) => {
+    setVis((s) => ({ v: c, vi: i, vt: s.vt + 1 }));
+    setVEpoca((e) => e + 1);
+    setMenu(false);
+  }, []);
+  const vNext = () => { setVis(avanca); setVEpoca((e) => e + 1); };
+  const vPrev = () => { setVis(volta); setVEpoca((e) => e + 1); };
+  const fecharV = () => setVis((s) => ({ ...s, v: -1 }));
+
+  return (
+    <div className={'k-app ' + (escuro ? 'dark' : '') + (io ? ' io' : '')} id="topo">
+      <Nav escuro={escuro} onTema={toggleTema} menu={menu} onMenu={() => setMenu((m) => !m)} onFechaMenu={() => setMenu(false)} />
+
+      <main>
+        <Hero pausado={vAberto} onAbrir={abrirV} />
+        <Destaques onAbrir={abrirV} />
+        <Historias pausado={vAberto} onAbrir={abrirV} />
+        <Cobertura pausado={vAberto} />
+        <Contato />
+      </main>
+
+      <footer className="k-wrap k-foot">
+        <p className="k-mast">kayo marques</p>
+        <div className="k-frow">
+          <span>Videomaker, fotógrafo e storymaker</span>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil seguidores no Instagram</a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener">(18) 99601-8339</a>
+        </div>
+        <p className="k-frow" style={{ marginTop: 16, fontSize: 13 }}>Protótipo. Fotos e vídeos de exemplo (Unsplash e Pexels), no lugar das fotos reais do Kayo.</p>
+      </footer>
+
+      {/* BARRA FIXA (celular) */}
+      <div className="k-dock">
+        <a className="k-btn k-btn-pri" href={WHATSAPP_URL} target="_blank" rel="noopener"><IconWhats />WhatsApp</a>
+        <a className="k-btn k-btn-out" href="#destaques">Destaques</a>
+      </div>
+
+      {vAberto && <Visualizador v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}
+    </div>
+  );
+}
