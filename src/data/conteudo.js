@@ -8,6 +8,7 @@ const video = (nome) => `${base}media/videos/${nome}.mp4`;
 
 export const WHATSAPP = '5518996018339';
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP}`;
+export const TELEFONE = '(18) 99601-8339';
 export const INSTAGRAM_URL = 'https://www.instagram.com/kayomaarques/';
 export const waTexto = (texto) => `${WHATSAPP_URL}?text=${encodeURIComponent(texto)}`;
 
@@ -43,39 +44,36 @@ export const V = {
 };
 
 // trabalhos (feed com filtros), story do topo e visualizador saem daqui
+// TODO: confirmar com o Kayo (fotos de chá revelação e 15 anos ainda são de outros eventos)
 export const CATS = [
-  { label: 'Casamentos', cover: I.casVeu, items: [
+  { label: 'Casamentos', noFeed: 3, cover: I.casVeu, items: [
     { t: 'O sim no jardim', tipo: 'Reel', img: I.pCas, v: V.cas },
     { t: 'Ensaio com véu', tipo: 'Fotos', img: I.casVeu },
     { t: 'Making of da noiva', tipo: 'Bastidores', img: I.casPreparo },
     { t: 'Detalhes do grande dia', tipo: 'Fotos', img: I.casVestido } ] },
-  { label: 'Festas', cover: I.fesBaloes, items: [
-    { t: 'Aniversário em tempo real', tipo: 'Tempo real', img: I.pFes, v: V.fes },
+  { label: 'Chá revelação', noFeed: 2, cover: I.fesBaloes, items: [
+    { t: 'A revelação em tempo real', tipo: 'Tempo real', img: I.pFes, v: V.fes },
+    { t: 'Os futuros pais', tipo: 'Fotos', img: I.ensGestCasal },
+    { t: 'Balões e decoração', tipo: 'Stories', img: I.fesBaloes },
+    { t: 'A espera em estúdio', tipo: 'Fotos', img: I.ensGest } ] },
+  { label: '15 anos', noFeed: 2, cover: I.fesCores, items: [
     { t: 'Hora do parabéns', tipo: 'Stories', img: I.fesBolo },
-    { t: 'Festa infantil', tipo: 'Fotos', img: I.fesBaloes },
-    { t: 'Decoração e diversão', tipo: 'Reel', img: I.fesCores } ] },
-  { label: 'Ensaios', cover: I.ensGestCasal, items: [
-    { t: 'Ensaio gestante', tipo: 'Fotos', img: I.ensGestCasal },
-    { t: 'Família no pôr do sol', tipo: 'Fotos', img: I.ensFam },
-    { t: 'Casal e pet', tipo: 'Fotos', img: I.ensPet },
-    { t: 'Gestante em estúdio', tipo: 'Fotos', img: I.ensGest } ] },
-  { label: 'Marcas', cover: I.marRest, items: [
+    { t: 'Decoração e diversão', tipo: 'Reel', img: I.fesCores },
+    { t: 'A família reunida', tipo: 'Fotos', img: I.ensFam },
+    { t: 'Stories no ar', tipo: 'Tempo real', img: I.pTr, v: V.tr } ] },
+  { label: 'Marcas', noFeed: 2, cover: I.marRest, items: [
     { t: 'Restaurante', tipo: 'Reel', img: I.marRest },
     { t: 'Gastronomia', tipo: 'Fotos', img: I.marPrato },
     { t: 'Salão de beleza', tipo: 'Bastidores', img: I.marSalao },
-    { t: 'Estúdio de beleza', tipo: 'Fotos', img: I.marBeleza } ] },
-  { label: 'Tempo real', cover: I.fesFilmando, items: [
-    { t: 'Stories no ar', tipo: 'Tempo real', img: I.pTr, v: V.tr },
-    { t: 'Vários olhares', tipo: 'Bastidores', img: I.fesFilmando },
-    { t: 'Do celular para o feed', tipo: 'Bastidores', img: I.capDurante } ] }
+    { t: 'Estúdio de beleza', tipo: 'Fotos', img: I.marBeleza } ] }
 ];
 
 // story do topo: c = categoria, i = item dentro dela
 export const HERO = [
-  { c: 4, i: 0, tag: 'Tempo real', d: 'Stories no ar enquanto a festa acontece.' },
+  { c: 2, i: 3, tag: 'Tempo real', d: 'Stories no ar enquanto a festa acontece.' },
   { c: 0, i: 0, tag: 'Casamento', d: 'Cada momento vira conteúdo na hora.' },
-  { c: 1, i: 0, tag: 'Festa', d: 'Equipe de até 3 pessoas, de vários ângulos.' },
-  { c: 2, i: 0, tag: 'Ensaio', d: 'Luz natural e muito afeto.' },
+  { c: 1, i: 0, tag: 'Chá revelação', d: 'Equipe de até 3 pessoas, de vários ângulos.' },
+  { c: 2, i: 0, tag: '15 anos', d: 'Cada detalhe da festa nos stories.' },
   { c: 3, i: 0, tag: 'Marca', d: 'Reels para aparecer bem no Instagram.' }
 ];
 
@@ -85,12 +83,12 @@ export const CAPS = [
   { k: 'Depois', t: 'Reels e fotos editados', d: 'Vídeos verticais com edição ágil e fotos para guardar e postar.', img: I.capDepois, alt: 'Edição de vídeo no notebook' }
 ];
 
-export const TIPOS = ['Casamento', 'Festa ou evento', 'Ensaio', 'Marca ou conteúdo'];
+export const TIPOS = ['Casamento', 'Chá revelação', '15 anos', 'Marca'];
 export const FRASES = {
   'Casamento': 'cobertura de casamento',
-  'Festa ou evento': 'cobertura de festa ou evento',
-  'Ensaio': 'ensaio fotográfico',
-  'Marca ou conteúdo': 'conteúdo para marca'
+  'Chá revelação': 'cobertura de chá revelação',
+  '15 anos': 'cobertura de 15 anos',
+  'Marca': 'conteúdo para marca'
 };
 
 // Linha do tempo de um casamento: horário, momento e minutos até ir ao ar.

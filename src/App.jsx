@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data/conteudo.js';
+import { CATS, INSTAGRAM_URL, TELEFONE, WHATSAPP_URL } from './data/conteudo.js';
 import { iniciarMidia, pararMidia } from './lib/media.js';
 import { ScrollTrigger } from './lib/gsap.js';
 import Abertura, { deveAbrir } from './components/Abertura.jsx';
@@ -108,7 +108,7 @@ export default function App() {
         <div className="k-frow">
           <span>Videomaker, fotógrafo e storymaker</span>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener">11 mil seguidores no Instagram</a>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener">(18) 99601-8339</a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener">{TELEFONE}</a>
         </div>
         <p className="k-frow" style={{ marginTop: 16, fontSize: 13 }}>Protótipo. Fotos e vídeos de exemplo (Unsplash e Pexels), no lugar das fotos reais do Kayo.</p>
       </footer>

@@ -9,12 +9,12 @@ import Midia from './Midia.jsx';
 const FILTROS = [{ label: 'Todos', id: -1 }].concat(CATS.map((c, ci) => ({ label: c.label, id: ci })));
 const SAIDA = [0.2, 0.8, 0.2, 1];
 
-// em "Todos": 2 de cada categoria e 1 da última, 9 cards que fecham a grade sem buraco
+// em "Todos", cada categoria mostra só os primeiros (noFeed): 9 cards que fecham a grade sem buraco
 function itensDoFeed(filtro) {
   const feed = [];
   CATS.forEach((c, ci) => {
     if (filtro !== -1 && filtro !== ci) return;
-    const max = filtro !== -1 ? c.items.length : (ci === CATS.length - 1 ? 1 : 2);
+    const max = filtro !== -1 ? c.items.length : c.noFeed;
     c.items.slice(0, max).forEach((it, ii) => {
       feed.push({ id: 'c' + ci + 'i' + ii, ci, ii, t: it.t, cat: c.label, img: it.img, v: it.v });
     });

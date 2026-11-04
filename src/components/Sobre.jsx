@@ -6,7 +6,7 @@ import { IconInsta } from './Icons.jsx';
 
 const FAZ = [
   { t: 'Vídeo', d: 'Reels e filmes verticais com edição ágil.' },
-  { t: 'Foto', d: 'Ensaios e eventos com luz natural.' },
+  { t: 'Foto', d: 'Eventos e marcas com luz natural.' },
   { t: 'Tempo real', d: 'Stories no ar enquanto a festa acontece.' }
 ];
 
@@ -51,7 +51,7 @@ export default function Sobre() {
 
         <div className="k-bc k-bola k-rv" style={{ '--d': '.08s' }}>
           <h2 className="k-h2">Olá, eu sou o Kayo.</h2>
-          <p>Registro casamentos, festas, ensaios e marcas em vídeo e foto, e coloco tudo no ar enquanto o evento acontece.</p>
+          <p>Registro casamentos, chás revelação, 15 anos e marcas em vídeo e foto, e coloco tudo no ar enquanto o evento acontece.</p>
           <a className="k-perfil" href={INSTAGRAM_URL} target="_blank" rel="noopener" aria-label="Instagram @kayomaarques, 11 mil seguidores">
             <Selo size={44} className="k-perfilselo" />
             <span className="k-perfiltx">
