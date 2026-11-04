@@ -1,6 +1,7 @@
 /* Hallmark · v2.0.0 · redesign: polish + new sections · genre: editorial · theme: custom (paleta do feed do Kayo, by request) · job: chamar no WhatsApp · signature: o story que avança no primeiro screen · nav: pílula flutuante com o selo e uma ação · footer: o selo desenhado pelas guias, mast e contatos */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, fotos ainda são stand-ins; o Sobre virou um mosaico em que cada bloco carrega um fato */
 /* Hallmark · waive 65 · creme, serifa e blush vêm do feed real do @kayomaarques, pedido do cliente */
+/* Hallmark · waive cursor follower, pulsing dot, emoji · rastro de fotos, ponto REC e emoji do slider pedidos pelo cliente */
 /* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: celular fixo da Linha do tempo, retrato do Sobre se afastando, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
 /* Hallmark · waive 83 · as fotos são o portfólio do próprio Kayo (hoje stand-ins de exemplo até chegarem as dele) */
 
@@ -15,6 +16,7 @@
   --rec:#C8372D;
   --font-display:'Castoro',ui-serif,serif;--font-body:'Manrope',ui-sans-serif,sans-serif;
   --ease-out:cubic-bezier(.2,.8,.2,1);
+  --grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 :root:has(.k-app.dark),.k-app.dark{
   color-scheme:dark;
@@ -379,6 +381,12 @@ img,video{display:block}
 .k-frow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:24px;color:var(--muted);font-size:14px;font-weight:600}
 .k-frow a{text-decoration:none}
 .k-frow a:hover{color:var(--ink)}
+
+/* ===== grão de filme: só no escuro (faixa do rastro e, no tema escuro, a página toda) ===== */
+.k-rastro::after,.k-app.dark::after{content:"";pointer-events:none;background-image:var(--grao);opacity:.05}
+.k-rastro::after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3}
+.k-app.dark::after{position:fixed;top:0;right:0;bottom:0;left:0;z-index:40}
+.k-app.dark .k-rastro::after{display:none}
 
 /* ===== barra fixa (celular) ===== */
 .k-dock{display:none}
