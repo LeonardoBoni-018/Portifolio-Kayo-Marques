@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { gsap, MQ_MOVIMENTO, ScrollTrigger } from '../lib/gsap.js';
-import { CATS } from '../data.js';
+import { CATS } from '../data/conteudo.js';
 import { useSincronizarMidia } from '../lib/hooks.js';
 import { IconPlay } from './Icons.jsx';
 import Midia from './Midia.jsx';

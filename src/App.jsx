@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data.js';
+import { CATS, INSTAGRAM_URL, WHATSAPP_URL } from './data/conteudo.js';
 import { iniciarMidia, pararMidia } from './lib/media.js';
 import { ScrollTrigger } from './lib/gsap.js';
 import Abertura, { deveAbrir } from './components/Abertura.jsx';

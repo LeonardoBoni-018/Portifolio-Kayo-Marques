@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '../lib/gsap.js';
-import { CAPS, WHATSAPP_URL } from '../data.js';
+import { CAPS, WHATSAPP_URL } from '../data/conteudo.js';
 import { useSincronizarMidia } from '../lib/hooks.js';
 import Midia from './Midia.jsx';
 

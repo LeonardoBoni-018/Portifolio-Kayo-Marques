@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { gsap, MQ_MOVIMENTO } from '../lib/gsap.js';
-import { WHATSAPP_URL } from '../data.js';
+import { WHATSAPP_URL } from '../data/conteudo.js';
 import { IconLua, IconMenu, IconSol } from './Icons.jsx';
 import { Logo } from './Logo.jsx';
 

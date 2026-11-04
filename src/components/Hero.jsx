@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CATS, HERO, WHATSAPP_URL } from '../data.js';
+import { CATS, HERO, WHATSAPP_URL } from '../data/conteudo.js';
 import { segs, useSincronizarMidia, useStepper } from '../lib/hooks.js';
 import { IconDir, IconEsq, IconPausa, IconSalvar, IconTocar } from './Icons.jsx';
 import Midia from './Midia.jsx';

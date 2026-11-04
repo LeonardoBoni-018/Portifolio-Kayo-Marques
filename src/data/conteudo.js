@@ -3,7 +3,7 @@
 // ou edite os caminhos abaixo.
 
 const base = import.meta.env.BASE_URL;
-const foto = (nome) => `${base}media/fotos/${nome}.jpg`;
+const foto = (nome) => `${base}media/fotos/${nome}.webp`;
 const video = (nome) => `${base}media/videos/${nome}.mp4`;
 
 export const WHATSAPP = '5518996018339';

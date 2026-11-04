@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap, MQ_MOVIMENTO } from '../lib/gsap.js';
-import { I, INSTAGRAM_URL, WHATSAPP_URL } from '../data.js';
+import { I, INSTAGRAM_URL, WHATSAPP_URL } from '../data/conteudo.js';
 import { Selo } from './Logo.jsx';
 import { IconInsta } from './Icons.jsx';
 

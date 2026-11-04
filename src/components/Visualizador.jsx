@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { CATS, waTexto } from '../data.js';
+import { CATS, waTexto } from '../data/conteudo.js';
 import { segs, useSincronizarMidia } from '../lib/hooks.js';
 import { IconDir, IconEsq, IconFechar } from './Icons.jsx';
 import Midia from './Midia.jsx';

@@ -18,7 +18,7 @@ public/media/fotos/    fotos (ainda de exemplo, Unsplash)
 public/media/videos/   vídeos (ainda de exemplo, Pexels)
 public/logo/           logo do Kayo em SVG (selo e logo completa, versões escura e clara)
 public/favicon.svg     ícone da aba
-src/data.js            todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
+src/data/conteudo.js   todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
 src/styles.css         estilos e temas claro/escuro
 src/components/        Abertura, Nav, Hero, Sobre, Trabalhos, Cobertura, Contato, Visualizador, Logo, SeloConstrucao
 src/lib/               GSAP ScrollTrigger, revelação ao rolar e controle dos vídeos
@@ -55,8 +55,8 @@ antes de usar.
 As mídias atuais são provisórias. Quando chegarem as fotos e vídeos reais do Kayo:
 
 1. Substitua os arquivos em `public/media/fotos/` e `public/media/videos/` mantendo os mesmos nomes, **ou**
-2. Adicione arquivos novos e ajuste os caminhos em `src/data.js`.
+2. Adicione arquivos novos e ajuste os caminhos em `src/data/conteudo.js`.
 
-A foto do Kayo na seção Sobre é `public/media/fotos/kayo-retrato.jpg` (formato vertical 4:5).
+A foto do Kayo na seção Sobre é `public/media/fotos/kayo-retrato.webp` (formato vertical 4:5).
 Fotos verticais (9:16) funcionam melhor nos stories; os vídeos tocam mudos e em loop, só quando estão visíveis.
 Depois, remova a nota de "Protótipo" no rodapé (`src/App.jsx`).
