@@ -5,10 +5,9 @@ import { IconEnviar } from './Icons.jsx';
 import { Selo } from './Logo.jsx';
 
 // CONTATO: "responda o story" monta a mensagem que chega pronta no WhatsApp
-export default function Contato() {
+export default function Contato({ data, onData }) {
   const [tipo, setTipo] = useState('Casamento');
   const [nome, setNome] = useState('');
-  const [data, setData] = useState('');
   const [msg, setMsg] = useState('');
   const barra = useRef(null);
 
@@ -43,7 +42,7 @@ export default function Contato() {
           <div className="k-bubble">{previa}</div>
         </div>
 
-        <form className="k-reply k-rv" style={{ '--d': '.1s' }} onSubmit={(e) => e.preventDefault()} aria-label="Responder ao story do Kayo">
+        <form className="k-reply k-rv" tabIndex={-1} style={{ '--d': '.1s' }} onSubmit={(e) => e.preventDefault()} aria-label="Responder ao story do Kayo">
           <img className="k-bg" src={I.casVestido} alt="" />
           <div className="k-bars"><span className="k-sg done"><i /></span><span className="k-sg done"><i /></span><span className="k-sg"><i ref={barra} /></span></div>
           <div className="k-meta"><span className="k-av"><Selo size={32} /></span><span>kayomaarques</span><small>agora</small></div>
@@ -55,7 +54,7 @@ export default function Contato() {
           </div>
           <div className="k-flds">
             <label className="k-fl">Seu nome<input className="k-inp" type="text" placeholder="Como você se chama?" value={nome} onChange={(e) => setNome(e.target.value)} autoComplete="name" /></label>
-            <label className="k-fl">Data do evento<input className="k-inp" type="date" value={data} onChange={(e) => setData(e.target.value)} /></label>
+            <label className="k-fl">Data do evento<input className="k-inp" type="date" value={data} onChange={(e) => onData(e.target.value)} /></label>
           </div>
           <label className="k-fl">Sua ideia
             <span className="k-rbar">

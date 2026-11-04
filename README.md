@@ -20,7 +20,7 @@ public/logo/           logo do Kayo em SVG (selo e logo completa, versões escur
 public/favicon.svg     ícone da aba
 src/data/conteudo.js   todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
 src/styles.css         estilos e temas claro/escuro
-src/components/        Destaques, VisorCamera, Abertura, Nav, Hero, LinhaTempo, Sobre, Trabalhos, Cobertura, Depoimentos, Faq, Contato, Visualizador, Logo, SeloConstrucao
+src/components/        Destaques, VisorCamera, Abertura, Nav, Hero, LinhaTempo, Sobre, Trabalhos, Cobertura, Depoimentos, Faq, Agenda, Contato, Visualizador, Logo, SeloConstrucao
 src/lib/               GSAP ScrollTrigger, revelação ao rolar e controle dos vídeos
 ```
 
@@ -37,6 +37,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo | GSAP ScrollTrigger |
 | Depoimentos | as bolhas da DM entram em sequência, com "digitando…", uma vez só | CSS + timers |
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |
+| Agenda | calendário mensal; o dia escolhido vai para o formulário | React |
 | Contato | a terceira barrinha do story do formulário enche ao rolar | GSAP ScrollTrigger |
 | Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 

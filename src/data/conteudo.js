@@ -112,6 +112,13 @@ export const FRASES = {
   'Marca': 'conteúdo para marca'
 };
 
+// Agenda: dias já fechados e dias com última vaga, em AAAA-MM-DD. O resto fica livre.
+// TODO: confirmar com o Kayo (datas reais; hoje são exemplos)
+export const AGENDA = {
+  fechadas: ['2026-11-07', '2026-11-14', '2026-11-20', '2026-12-05', '2026-12-12', '2026-12-19', '2027-01-09', '2027-01-23', '2027-02-13'],
+  ultimaVaga: ['2026-11-21', '2026-12-26', '2027-01-16', '2027-02-06']
+};
+
 // Linha do tempo de um casamento: horário, momento e minutos até ir ao ar.
 // TODO: confirmar com o Kayo (horários e tempos reais de postagem de um evento dele)
 export const MOMENTOS = [

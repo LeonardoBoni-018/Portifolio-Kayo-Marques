@@ -13,6 +13,7 @@ import Faq from './components/Faq.jsx';
 import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
 import Cobertura from './components/Cobertura.jsx';
+import Agenda from './components/Agenda.jsx';
 import Contato from './components/Contato.jsx';
 import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
@@ -52,6 +53,7 @@ export default function App() {
   const [vis, setVis] = useState({ lista: 'feed', v: -1, vi: 0, vt: 0 });
   const [vistos, setVistos] = useState(vistosSalvos);
   const [vEpoca, setVEpoca] = useState(0);
+  const [dataEvento, setDataEvento] = useState('');
   const [abrindo, setAbrindo] = useState(deveAbrir);
   const fimAbertura = useCallback(() => setAbrindo(false), []);
 
@@ -120,7 +122,8 @@ export default function App() {
         <Cobertura />
         <Depoimentos />
         <Faq />
-        <Contato />
+        <Agenda data={dataEvento} onEscolher={setDataEvento} />
+        <Contato data={dataEvento} onData={setDataEvento} />
       </main>
 
       <footer className="k-wrap k-foot">
