@@ -112,6 +112,18 @@ export const FRASES = {
   'Marca': 'conteúdo para marca'
 };
 
+// Bruto × editado: hoje uma foto com o "bruto" simulado por filtro de CSS.
+// Para usar o material real, preencha imgBruto (e tire simularBruto) ou os dois vídeos.
+// TODO: confirmar com o Kayo (um trecho real, antes e depois da edição)
+export const BRUTO_EDITADO = {
+  img: I.casVeu,
+  imgBruto: null,
+  simularBruto: true,
+  videoBruto: null,
+  videoEditado: null,
+  alt: 'Casal abraçado sob o véu'
+};
+
 // Horas de cobertura no sticker do formulário
 // TODO: confirmar com o Kayo (pacotes de horas que ele oferece)
 export const HORAS = { min: 2, max: 10, padrao: 6, emoji: '🎉' };

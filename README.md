@@ -20,7 +20,7 @@ public/logo/           logo do Kayo em SVG (selo e logo completa, versões escur
 public/favicon.svg     ícone da aba
 src/data/conteudo.js   todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
 src/styles.css         estilos e temas claro/escuro
-src/components/        Destaques, VisorCamera, Abertura, Nav, Hero, LinhaTempo, Sobre, Trabalhos, Cobertura, Depoimentos, Faq, Agenda, Contato, Visualizador, Logo, SeloConstrucao
+src/components/        Destaques, VisorCamera, Abertura, Nav, Hero, LinhaTempo, Sobre, Trabalhos, Cobertura, Depoimentos, Faq, Agenda, BrutoEditado, Contato, Visualizador, Logo, SeloConstrucao
 src/lib/               GSAP ScrollTrigger, revelação ao rolar e controle dos vídeos
 ```
 
@@ -34,6 +34,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Linha do tempo | o celular fixo troca de story quando cada momento cruza o centro da tela | IntersectionObserver |
 | Sobre | mosaico: os blocos entram em sequência, o retrato se afasta devagar ao rolar e o número de seguidores no selo de perfil conta | GSAP ScrollTrigger |
 | Trabalhos | destaques em círculo; os cards abrem como cortina; o filtro desliza e reorganiza; visor de câmera com REC no hover, foco ou centro da tela | GSAP + Motion + CSS |
+| Bruto × editado | slider de antes e depois com clip-path; aceita fotos ou dois vídeos sincronizados | CSS + input range |
 | Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo | GSAP ScrollTrigger |
 | Depoimentos | as bolhas da DM entram em sequência, com "digitando…", uma vez só | CSS + timers |
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |

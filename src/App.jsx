@@ -12,6 +12,7 @@ import Depoimentos from './components/Depoimentos.jsx';
 import Faq from './components/Faq.jsx';
 import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
+import BrutoEditado from './components/BrutoEditado.jsx';
 import Cobertura from './components/Cobertura.jsx';
 import Agenda from './components/Agenda.jsx';
 import Contato from './components/Contato.jsx';
@@ -119,6 +120,7 @@ export default function App() {
         <LinhaTempo />
         <Sobre />
         <Trabalhos onAbrir={abrirV} vistos={vistos} onAbrirDestaque={abrirDestaque} />
+        <BrutoEditado />
         <Cobertura />
         <Depoimentos />
         <Faq />
