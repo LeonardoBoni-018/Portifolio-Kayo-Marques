@@ -43,6 +43,9 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Contato | a terceira barrinha do story do formulário enche ao rolar; enquete e slider de emoji | GSAP ScrollTrigger + CSS |
 | Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 
+A versão simples fica em `/simples`, direta ao ponto: apresentação (Hero e Sobre), Trabalhos e Contato.
+As duas versões usam os mesmos componentes e o mesmo `src/data/conteudo.js`. A escolha da versão fica em `src/App.jsx`.
+
 Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.
 No celular, a Cobertura vira uma coluna.
 

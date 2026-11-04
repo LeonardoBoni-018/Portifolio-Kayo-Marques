@@ -25,7 +25,7 @@ function itensDoFeed(filtro) {
 }
 
 // TRABALHOS: feed com filtros por tipo (Motion: o destaque do filtro desliza e os cards se reorganizam)
-export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque }) {
+export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque, simples }) {
   const [filtro, setFiltro] = useState(-1);
   useSincronizarMidia();
 
@@ -58,9 +58,9 @@ export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque }) {
     <section id="trabalhos" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }} ref={raiz}>
       <div className="k-head">
         <h2 className="k-h2 k-rv">Um olhar para cada tipo de projeto</h2>
-        <p className="k-sub k-rv" style={{ '--d': '.08s' }}>Toque num círculo para ver os stories, ou filtre o feed por tipo de evento.</p>
+        <p className="k-sub k-rv" style={{ '--d': '.08s' }}>{simples ? 'Filtre por tipo de evento e toque num trabalho para assistir.' : 'Toque num círculo para ver os stories, ou filtre o feed por tipo de evento.'}</p>
       </div>
-      <Destaques vistos={vistos} onAbrir={onAbrirDestaque} />
+      {!simples && <Destaques vistos={vistos} onAbrir={onAbrirDestaque} />}
       <LayoutGroup>
         <div className="k-filters" role="group" aria-label="Filtrar trabalhos">
           {FILTROS.map((f) => (
@@ -79,7 +79,7 @@ export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque }) {
                 <Midia img={t.img} v={t.v} preload="none" loading="lazy" />
                 <span className="k-sb" />
                 {t.v && <span className="k-play"><IconPlay /></span>}
-                <VisorCamera />
+                {!simples && <VisorCamera />}
                 <span className="k-ci"><span className="k-tag">{t.cat}</span><h3>{t.t}</h3></span>
               </motion.button>
             ))}

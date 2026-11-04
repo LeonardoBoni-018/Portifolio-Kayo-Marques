@@ -1,0 +1,6 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/simples", "destination": "/index.html" }
+  ]
+}

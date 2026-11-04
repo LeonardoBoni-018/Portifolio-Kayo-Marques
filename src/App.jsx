@@ -20,6 +20,10 @@ import RastroFotos from './components/RastroFotos.jsx';
 import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
 
+// /simples é a versão direta ao ponto: apresentação, trabalhos e contato, com as mesmas peças e o mesmo conteúdo
+const SIMPLES = /^\/simples\/?$/.test(window.location.pathname);
+const LINKS_SIMPLES = [['#sobre', 'Sobre'], ['#trabalhos', 'Trabalhos'], ['#contato', 'Contato']];
+
 const CHAVE_TEMA = 'kayo-tema-v2';
 const CHAVE_VISTOS = 'kayo-destaques-vistos';
 const LISTAS = { feed: CATS, destaques: DESTAQUES };
@@ -56,7 +60,7 @@ export default function App() {
   const [vistos, setVistos] = useState(vistosSalvos);
   const [vEpoca, setVEpoca] = useState(0);
   const [dataEvento, setDataEvento] = useState('');
-  const [abrindo, setAbrindo] = useState(deveAbrir);
+  const [abrindo, setAbrindo] = useState(() => !SIMPLES && deveAbrir());
   const fimAbertura = useCallback(() => setAbrindo(false), []);
 
   // fotos e fontes mudam a altura das seções: as posições do scroll são recalculadas no fim do carregamento
@@ -114,29 +118,40 @@ export default function App() {
     <div className={'k-app ' + (escuro ? 'dark' : '') + (io ? ' io' : '') + (abrindo ? ' espera' : '')} id="topo">
       <AnimatePresence>{abrindo && <Abertura key="abertura" onFim={fimAbertura} />}</AnimatePresence>
 
-      <Nav escuro={escuro} onTema={toggleTema} menu={menu} onMenu={() => setMenu((m) => !m)} onFechaMenu={() => setMenu(false)} />
+      <Nav escuro={escuro} onTema={toggleTema} menu={menu} onMenu={() => setMenu((m) => !m)} onFechaMenu={() => setMenu(false)} links={SIMPLES ? LINKS_SIMPLES : undefined} />
 
       <main>
-        {/* quem é */}
-        <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
-        <Sobre />
-        {/* o que faz */}
-        <Trabalhos onAbrir={abrirV} vistos={vistos} onAbrirDestaque={abrirDestaque} />
-        <BrutoEditado />
-        {/* como funciona */}
-        <Cobertura />
-        <LinhaTempo />
-        {/* por que confiar */}
-        <Depoimentos />
-        <RastroFotos />
-        <Faq />
-        {/* como contratar */}
-        <Agenda data={dataEvento} onEscolher={setDataEvento} />
-        <Contato data={dataEvento} onData={setDataEvento} />
+        {SIMPLES ? (
+          <>
+            <Hero pausado={vAberto} onAbrir={abrirV} />
+            <Sobre />
+            <Trabalhos onAbrir={abrirV} simples />
+            <Contato data={dataEvento} onData={setDataEvento} simples />
+          </>
+        ) : (
+          <>
+            {/* quem é */}
+            <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
+            <Sobre />
+            {/* o que faz */}
+            <Trabalhos onAbrir={abrirV} vistos={vistos} onAbrirDestaque={abrirDestaque} />
+            <BrutoEditado />
+            {/* como funciona */}
+            <Cobertura />
+            <LinhaTempo />
+            {/* por que confiar */}
+            <Depoimentos />
+            <RastroFotos />
+            <Faq />
+            {/* como contratar */}
+            <Agenda data={dataEvento} onEscolher={setDataEvento} />
+            <Contato data={dataEvento} onData={setDataEvento} />
+          </>
+        )}
       </main>
 
       <footer className="k-wrap k-foot">
-        <SeloConstrucao />
+        {!SIMPLES && <SeloConstrucao />}
         <p className="k-mast"><span className="k-mastin">kayo marques</span></p>
         <div className="k-frow">
           <span>Videomaker, fotógrafo e storymaker</span>
