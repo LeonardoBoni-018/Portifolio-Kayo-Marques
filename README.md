@@ -20,7 +20,7 @@ public/logo/           logo do Kayo em SVG (selo e logo completa, versões escur
 public/favicon.svg     ícone da aba
 src/data/conteudo.js   todo o conteúdo: categorias, stories, capítulos, WhatsApp, Instagram
 src/styles.css         estilos e temas claro/escuro
-src/components/        Abertura, Nav, Hero, Sobre, Trabalhos, Cobertura, Contato, Visualizador, Logo, SeloConstrucao
+src/components/        Abertura, Nav, Hero, LinhaTempo, Sobre, Trabalhos, Cobertura, Contato, Visualizador, Logo, SeloConstrucao
 src/lib/               GSAP ScrollTrigger, revelação ao rolar e controle dos vídeos
 ```
 
@@ -31,6 +31,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Menu | uma linha blush na base enche conforme a página é lida, como a barrinha de story | GSAP ScrollTrigger |
 | Abertura | contador e anéis em volta do selo, uma vez por sessão | Motion |
 | Hero | story que avança sozinho, pausa com mouse, foco ou botão | CSS |
+| Linha do tempo | o celular fixo troca de story quando cada momento cruza o centro da tela | IntersectionObserver |
 | Sobre | mosaico: os blocos entram em sequência, o retrato se afasta devagar ao rolar e o número de seguidores no selo de perfil conta | GSAP ScrollTrigger |
 | Trabalhos | os cards abrem como cortina na primeira passagem; o destaque do filtro desliza e os cards se reorganizam | GSAP + Motion |
 | Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo | GSAP ScrollTrigger |

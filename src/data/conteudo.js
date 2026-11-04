@@ -92,3 +92,14 @@ export const FRASES = {
   'Ensaio': 'ensaio fotográfico',
   'Marca ou conteúdo': 'conteúdo para marca'
 };
+
+// Linha do tempo de um casamento: horário, momento e minutos até ir ao ar.
+// TODO: confirmar com o Kayo (horários e tempos reais de postagem de um evento dele)
+export const MOMENTOS = [
+  { hora: '15:20', t: 'Os detalhes do vestido', min: 6, img: I.casVestido, alt: 'Vestido de noiva pendurado perto das flores' },
+  { hora: '16:05', t: 'A noiva se arrumando', min: 4, img: I.casPreparo, alt: 'Noiva colocando os brincos' },
+  { hora: '17:00', t: 'A entrada da noiva', min: 3, img: I.casNoiva, alt: 'Noiva pronta para a cerimônia' },
+  { hora: '17:25', t: 'O sim no jardim', min: 2, img: I.pCas, v: V.cas, alt: 'Noivos se olhando no jardim' },
+  { hora: '18:40', t: 'O ensaio com véu', min: 8, img: I.casVeu, alt: 'Casal abraçado sob o véu' },
+  { hora: '20:30', t: 'A festa no ar', min: 1, img: I.pTr, v: V.tr, alt: 'Convidada filmando a festa com o celular' }
+];

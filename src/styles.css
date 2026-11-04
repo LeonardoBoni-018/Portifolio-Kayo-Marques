@@ -1,7 +1,7 @@
 /* Hallmark · v2.0.0 · redesign: polish + new sections · genre: editorial · theme: custom (paleta do feed do Kayo, by request) · job: chamar no WhatsApp · signature: o story que avança no primeiro screen · nav: pílula flutuante com o selo e uma ação · footer: o selo desenhado pelas guias, mast e contatos */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, fotos ainda são stand-ins; o Sobre virou um mosaico em que cada bloco carrega um fato */
 /* Hallmark · waive 65 · creme, serifa e blush vêm do feed real do @kayomaarques, pedido do cliente */
-/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: retrato do Sobre se afastando, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
+/* Hallmark · waive F8 · o cliente pediu efeitos ao rolar: celular fixo da Linha do tempo, retrato do Sobre se afastando, trilho da Cobertura e selo do rodapé, um padrão por seção, todos com estado final estático sem script e com movimento reduzido */
 /* Hallmark · waive 83 · as fotos são o portfólio do próprio Kayo (hoje stand-ins de exemplo até chegarem as dele) */
 
 /* ===== tokens: paleta tirada do feed (off-white, areia, blush, sálvia, cacau) ===== */
@@ -12,13 +12,14 @@
   --media:#2A2622;--onMedia:#FAF7F3;--onMediaSoft:rgba(250,247,243,.84);--onMediaLine:rgba(250,247,243,.36);--onMediaChip:rgba(250,247,243,.16);
   --scrimTop:rgba(20,17,14,.5);--scrimBottom:rgba(20,17,14,.76);--veil:rgba(20,17,14,.94);--navbg:rgba(246,243,239,.94);--shadow:rgba(60,45,35,.22);--focus:#1F1B17;
   --dim:color-mix(in srgb,var(--muted) 78%,var(--paper));
+  --rec:#C8372D;
   --font-display:'Castoro',ui-serif,serif;--font-body:'Manrope',ui-sans-serif,sans-serif;
   --ease-out:cubic-bezier(.2,.8,.2,1);
 }
 :root:has(.k-app.dark),.k-app.dark{
   color-scheme:dark;
   --paper:#141310;--paper2:#1C1A17;--surface:#221F1B;--ink:#F0EDEA;--muted:#B6ADA4;--line:#36312B;
-  --accent:#A9BBB3;--accentSoft:#232A27;--blushSoft:#3A2C26;--blushInk:#F2E3DC;--onInk:#141310;--navbg:rgba(20,19,16,.94);--shadow:rgba(0,0,0,.55);--focus:#F0EDEA}
+  --accent:#A9BBB3;--accentSoft:#232A27;--blushSoft:#3A2C26;--blushInk:#F2E3DC;--onInk:#141310;--navbg:rgba(20,19,16,.94);--shadow:rgba(0,0,0,.55);--focus:#F0EDEA;--rec:#EF6A5C}
 
 *,*::before,*::after{box-sizing:border-box}
 html,body{overflow-x:clip}
@@ -129,6 +130,23 @@ img,video{display:block}
 .k-sub{font-size:17px;line-height:1.6;color:var(--muted);max-width:44ch}
 .k-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px}
 
+
+/* ===== linha do tempo: o celular fixo e os momentos do evento ===== */
+.k-exemplo{display:inline-block;margin-left:4px;padding:2px 10px;border:1px dashed var(--muted);border-radius:999px;font-size:13px;font-weight:600;line-height:1.5;color:var(--muted);white-space:nowrap}
+.k-ltgrid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:72px;align-items:start;margin-top:48px}
+.k-ltfixo{position:sticky;top:96px;align-self:start}
+.k-ltcel{height:min(calc(100svh - 128px),604px);width:auto;aspect-ratio:9/16;max-width:100%;margin:0 auto}
+.k-ltvivo{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--onMedia);color:var(--media);font-size:11px;font-weight:800;white-space:nowrap}
+.k-ltvivo i{width:7px;height:7px;border-radius:50%;background:var(--rec)}
+.k-ltlista{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.k-ltlista li{border-bottom:1px solid var(--line)}
+.k-ltitem{width:100%;min-height:44px;display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:clamp(32px,7vh,56px) 8px;background:none;border:0;cursor:pointer;text-align:left}
+.k-lthora{font-size:14px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.k-lttit{font-family:var(--font-display);font-size:clamp(24px,2.6vw,36px);line-height:1.12;letter-spacing:-.01em;color:var(--dim);transition:color .3s ease;text-wrap:balance}
+.k-ltmin{padding:4px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap;transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+.k-ltitem:hover .k-lttit{color:var(--ink)}
+.k-ltitem.on .k-lttit,.k-ltitem.on .k-lthora{color:var(--ink)}
+.k-ltitem.on .k-ltmin{background:var(--blushSoft);color:var(--blushInk);border-color:var(--blushSoft)}
 
 /* ===== sobre: mosaico (retrato, apresentação, seguidores, bastidores, o que faz) ===== */
 .k-bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
@@ -259,6 +277,18 @@ img,video{display:block}
 .k-hgrid{grid-template-columns:minmax(0,1fr);gap:40px}
 .k-hero{padding-top:40px}
 .k-cgrid{grid-template-columns:minmax(0,1fr);gap:40px}
+.k-ltgrid{grid-template-columns:minmax(0,1fr);gap:0;margin-top:32px}
+.k-ltfixo{top:84px;z-index:2;background:var(--paper);padding:8px 0 16px}
+.k-ltcel{height:38svh;border-radius:20px}
+.k-ltcel .k-meta{top:18px;left:8px;right:8px;font-size:11px;gap:4px}
+.k-ltcel .k-meta>span:nth-child(2){display:none}
+.k-ltcel .k-av,.k-ltcel .k-av svg{width:24px;height:24px}
+.k-ltcel .k-ltvivo{padding:2px 8px;font-size:10px}
+.k-ltcel .k-caps{left:10px;right:10px;bottom:10px}
+.k-ltcel .k-ct{font-size:17px;margin-top:4px}
+.k-ltcel .k-cd{font-size:12px;margin-top:2px}
+.k-ltcel .k-tag{font-size:11px;padding:2px 8px}
+.k-ltitem{padding:28px 0}
 .k-bento{grid-template-columns:repeat(6,minmax(0,1fr))}
 .k-bretrato{grid-column:1/7;grid-row:auto;min-height:0;aspect-ratio:4/5}
 .k-bola{grid-column:1/7;grid-row:auto;padding:28px}
@@ -288,6 +318,8 @@ img,video{display:block}
 .k-cobtrilho{padding:0 20px;gap:48px}
 .k-cobmid{height:auto;aspect-ratio:4/5}
 .k-flds{grid-template-columns:minmax(0,1fr)}
+.k-ltitem{grid-template-columns:52px minmax(0,1fr) auto;gap:10px}
+.k-lttit{font-size:22px}
 .k-bento{gap:12px}
 .k-bc{border-radius:20px}
 .k-bbast{min-height:220px}
