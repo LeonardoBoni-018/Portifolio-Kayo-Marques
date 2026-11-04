@@ -1,14 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RASTRO } from '../data/conteudo.js';
 
 const PASSO = 80;
 const MAX_ATIVAS = 14;
 
-// RASTRO DE FOTOS: ao mover o mouse mais de 80px pela faixa, nasce uma miniatura ali, que entra,
-// gira um pouco e some; é removida no animationend. Em tela de toque ou com movimento reduzido
-// fica uma fileira fixa de fotos (o CSS troca uma pela outra).
+// RASTRO DE FOTOS: um leque de fotos sempre à mostra. Com mouse, mover o ponteiro mais de 80px pela
+// área faz nascer uma miniatura ali, que entra, gira um pouco e some (removida no animationend).
+// A dica explica o gesto e sai no primeiro uso. Em tela de toque ou com movimento reduzido, fica só o leque.
 export default function RastroFotos() {
   const camada = useRef(null);
+  const [usou, setUsou] = useState(false);
 
   useEffect(() => {
     if (!window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) return undefined;
@@ -21,9 +22,11 @@ export default function RastroFotos() {
       const r = el.getBoundingClientRect();
       const x = e.clientX - r.left;
       const y = e.clientY - r.top;
-      if (ultimo && Math.hypot(x - ultimo.x, y - ultimo.y) < PASSO) return;
+      if (!ultimo) { ultimo = { x, y }; return; }
+      if (Math.hypot(x - ultimo.x, y - ultimo.y) < PASSO) return;
       ultimo = { x, y };
       if (el.childElementCount >= MAX_ATIVAS) return;
+      setUsou(true);
       const img = document.createElement('img');
       img.src = RASTRO[i++ % RASTRO.length];
       img.alt = '';
@@ -48,10 +51,11 @@ export default function RastroFotos() {
   return (
     <section className="k-rastro" aria-label="Fotos de eventos">
       <div className="k-rastrocam" ref={camada} aria-hidden="true" />
-      <p className="k-rastrotx">Cada evento deixa um rastro</p>
       <div className="k-rastrofixo" aria-hidden="true">
-        {RASTRO.slice(0, 5).map((src, i) => <img key={src} src={src} alt="" loading="lazy" style={{ '--r': (i % 2 ? 4 : -5) + 'deg' }} />)}
+        {RASTRO.slice(0, 5).map((src, i) => <img key={src} src={src} alt="" loading="lazy" style={{ '--r': (i - 2) * 5 + 'deg', '--y': Math.abs(i - 2) * 8 + 'px' }} />)}
       </div>
+      <p className="k-rastrotx">Um rastro de momentos</p>
+      <p className={usou ? 'k-rastrodica usou' : 'k-rastrodica'} aria-hidden="true">Passe o mouse por aqui para espalhar as fotos</p>
     </section>
   );
 }
