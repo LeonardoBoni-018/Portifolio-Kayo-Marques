@@ -360,12 +360,14 @@ img,video{display:block}
 .k-bubble{margin-top:8px;background:var(--accentSoft);border-radius:20px 20px 20px 4px;padding:16px;font-size:16px;line-height:1.55;color:var(--ink);max-width:56ch}
 
 /* ===== rastro de fotos ===== */
-.k-rastro{position:relative;margin-top:96px;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.k-rastro{touch-action:pan-y;position:relative;margin-top:96px;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
 .k-rastrocam{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;pointer-events:none}
 .k-rastrotx{font-family:var(--font-display);font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.015em;margin-top:24px}
 .k-rastrodica{font-size:15px;font-weight:600;color:var(--muted);transition:opacity .4s ease}
 .k-rastrodica.usou{opacity:0}
-@media (hover:none),(prefers-reduced-motion:reduce){.k-rastrodica{display:none}}
+.k-dicatoque{display:none}
+@media (hover:none){.k-dicamouse{display:none}.k-dicatoque{display:inline}}
+@media (prefers-reduced-motion:reduce){.k-rastrodica{display:none}}
 .k-rastrofoto{position:absolute;width:clamp(120px,13vw,180px);aspect-ratio:4/5;object-fit:cover;border-radius:12px;translate:-50% -50%;box-shadow:0 20px 32px -20px var(--shadow);animation:k-rastro 1.1s var(--ease-out) forwards}
 @keyframes k-rastro{0%{opacity:0;transform:scale(.6) rotate(calc(var(--r) * -1))}22%{opacity:1;transform:scale(1) rotate(var(--r))}70%{opacity:1;transform:scale(1) rotate(var(--r))}100%{opacity:0;transform:scale(.92) rotate(var(--r))}}
 .k-rastrofixo{display:flex;justify-content:center}

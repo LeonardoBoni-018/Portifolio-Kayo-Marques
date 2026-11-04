@@ -40,7 +40,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |
 | Agenda | calendário mensal; o dia escolhido vai para o formulário | React |
 | Contato | a terceira barrinha do story do formulário enche ao rolar; enquete e slider de emoji | GSAP ScrollTrigger + CSS |
-| Rastro de fotos | leque de fotos sempre à mostra; com mouse, miniaturas nascem atrás do ponteiro | CSS + eventos de ponteiro |
+| Rastro de fotos | leque de fotos sempre à mostra; miniaturas nascem atrás do mouse ou do dedo | CSS + eventos de ponteiro |
 | Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 
 Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.
