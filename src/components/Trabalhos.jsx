@@ -6,6 +6,7 @@ import { useSincronizarMidia } from '../lib/hooks.js';
 import { IconPlay } from './Icons.jsx';
 import Midia from './Midia.jsx';
 import Destaques from './Destaques.jsx';
+import VisorCamera from './VisorCamera.jsx';
 
 const FILTROS = [{ label: 'Todos', id: -1 }].concat(CATS.map((c, ci) => ({ label: c.label, id: ci })));
 const SAIDA = [0.2, 0.8, 0.2, 1];
@@ -78,6 +79,7 @@ export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque }) {
                 <Midia img={t.img} v={t.v} preload="none" loading="lazy" />
                 <span className="k-sb" />
                 {t.v && <span className="k-play"><IconPlay /></span>}
+                <VisorCamera />
                 <span className="k-ci"><span className="k-tag">{t.cat}</span><h3>{t.t}</h3></span>
               </motion.button>
             ))}

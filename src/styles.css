@@ -203,7 +203,20 @@ img,video{display:block}
 .k-ci{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;transition:transform .35s var(--ease-out)}
 .k-card:hover .k-ci{transform:translateY(-6px)}
 .k-ci h3{font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.1;margin-top:8px}
-.k-play{position:absolute;top:12px;right:12px;z-index:2;width:32px;height:32px;border-radius:50%;background:var(--onMedia);color:var(--media);display:grid;place-items:center}
+.k-visor{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .2s ease}
+.k-visor.on{opacity:1}
+.k-vc{position:absolute;width:24px;height:24px;border:2px solid var(--onMedia);transition:transform .4s var(--ease-out)}
+.k-vc.a{top:10px;left:10px;border-right:0;border-bottom:0;transform:translate(14px,14px)}
+.k-vc.b{top:10px;right:10px;border-left:0;border-bottom:0;transform:translate(-14px,14px)}
+.k-vc.c{bottom:10px;left:10px;border-right:0;border-top:0;transform:translate(14px,-14px)}
+.k-vc.d{bottom:10px;right:10px;border-left:0;border-top:0;transform:translate(-14px,-14px)}
+.k-visor.on .k-vc{transform:none}
+.k-rec{position:absolute;top:18px;left:50%;translate:-50% 0;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--scrimBottom);color:var(--onMedia);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.k-rec i{width:8px;height:8px;border-radius:50%;background:var(--rec)}
+.k-visor.on .k-rec i{animation:k-pisca 1s steps(2,jump-none) infinite}
+@keyframes k-pisca{from{opacity:1}to{opacity:.15}}
+.k-card:has(.k-visor.on) .k-play{opacity:0}
+.k-play{transition:opacity .2s ease;position:absolute;top:12px;right:12px;z-index:2;width:32px;height:32px;border-radius:50%;background:var(--onMedia);color:var(--media);display:grid;place-items:center}
 
 /* ===== cobertura: trilho horizontal guiado pela rolagem ===== */
 .k-cob{position:relative;padding-top:128px}
