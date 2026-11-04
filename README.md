@@ -31,16 +31,16 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Menu | uma linha blush na base enche conforme a página é lida, como a barrinha de story | GSAP ScrollTrigger |
 | Abertura | contador e anéis em volta do selo, uma vez por sessão | Motion |
 | Hero | story que avança sozinho, pausa com mouse, foco ou botão | CSS |
-| Linha do tempo | o celular fixo troca de story quando cada momento cruza o centro da tela | IntersectionObserver |
 | Sobre | mosaico: os blocos entram em sequência, o retrato se afasta devagar ao rolar e o número de seguidores no selo de perfil conta | GSAP ScrollTrigger |
 | Trabalhos | destaques em círculo; os cards abrem como cortina; o filtro desliza e reorganiza; visor de câmera com REC no hover, foco ou centro da tela | GSAP + Motion + CSS |
 | Bruto × editado | slider de antes e depois com clip-path; aceita fotos ou dois vídeos sincronizados | CSS + input range |
 | Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo; a mídia ganha cor ao chegar ao centro | GSAP ScrollTrigger + IntersectionObserver |
+| Linha do tempo | o celular fixo troca de story quando cada momento cruza o centro da tela | IntersectionObserver |
 | Depoimentos | as bolhas da DM entram em sequência, com "digitando…", uma vez só | CSS + timers |
+| Rastro de fotos | leque de fotos sempre à mostra; miniaturas nascem atrás do mouse ou do dedo | CSS + eventos de ponteiro |
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |
 | Agenda | calendário mensal; o dia escolhido vai para o formulário | React |
 | Contato | a terceira barrinha do story do formulário enche ao rolar; enquete e slider de emoji | GSAP ScrollTrigger + CSS |
-| Rastro de fotos | leque de fotos sempre à mostra; miniaturas nascem atrás do mouse ou do dedo | CSS + eventos de ponteiro |
 | Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 
 Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.

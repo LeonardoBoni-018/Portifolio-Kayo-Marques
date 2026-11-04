@@ -117,17 +117,22 @@ export default function App() {
       <Nav escuro={escuro} onTema={toggleTema} menu={menu} onMenu={() => setMenu((m) => !m)} onFechaMenu={() => setMenu(false)} />
 
       <main>
+        {/* quem é */}
         <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
-        <LinhaTempo />
         <Sobre />
+        {/* o que faz */}
         <Trabalhos onAbrir={abrirV} vistos={vistos} onAbrirDestaque={abrirDestaque} />
         <BrutoEditado />
+        {/* como funciona */}
         <Cobertura />
+        <LinhaTempo />
+        {/* por que confiar */}
         <Depoimentos />
+        <RastroFotos />
         <Faq />
+        {/* como contratar */}
         <Agenda data={dataEvento} onEscolher={setDataEvento} />
         <Contato data={dataEvento} onData={setDataEvento} />
-        <RastroFotos />
       </main>
 
       <footer className="k-wrap k-foot">
