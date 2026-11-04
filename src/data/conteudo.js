@@ -103,3 +103,23 @@ export const MOMENTOS = [
   { hora: '18:40', t: 'O ensaio com véu', min: 8, img: I.casVeu, alt: 'Casal abraçado sob o véu' },
   { hora: '20:30', t: 'A festa no ar', min: 1, img: I.pTr, v: V.tr, alt: 'Convidada filmando a festa com o celular' }
 ];
+
+// Depoimentos em formato de DM: nomes, datas e mensagens são fictícios.
+// TODO: confirmar com o Kayo (trocar por conversas reais, com autorização de quem aparece)
+export const CONVERSAS = [
+  { evento: 'Casamento', nomes: 'Ana e Bruno (exemplo)', iniciais: 'AB', data: 'data de exemplo', msgs: [
+    { de: 'casal', txt: 'Kayo, acordamos e fomos direto ver os stories do casamento!' },
+    { de: 'kayo', txt: 'Que bom! Foi um dia lindo de registrar.' },
+    { de: 'casal', txt: 'Quem não pôde ir acompanhou tudo pelo celular, parecia que estava lá.' }
+  ] },
+  { evento: 'Chá revelação', nomes: 'Carla e Davi (exemplo)', iniciais: 'CD', data: 'data de exemplo', msgs: [
+    { de: 'casal', txt: 'A família inteira viu a revelação na mesma hora que a gente!' },
+    { de: 'kayo', txt: 'O grito de vocês foi o melhor take do dia.' },
+    { de: 'casal', txt: 'Já salvamos tudo para mostrar quando o bebê crescer.' }
+  ] },
+  { evento: '15 anos', nomes: 'Elisa (exemplo)', iniciais: 'EL', data: 'data de exemplo', msgs: [
+    { de: 'casal', txt: 'Minhas amigas repostaram os stories a noite inteira!' },
+    { de: 'kayo', txt: 'Sua entrada ficou incrível.' },
+    { de: 'casal', txt: 'Foi a festa que eu queria, e ainda ficou tudo guardado.' }
+  ] }
+];

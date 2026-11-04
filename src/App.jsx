@@ -8,6 +8,7 @@ import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import LinhaTempo from './components/LinhaTempo.jsx';
 import Sobre from './components/Sobre.jsx';
+import Depoimentos from './components/Depoimentos.jsx';
 import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
 import Cobertura from './components/Cobertura.jsx';
@@ -95,6 +96,7 @@ export default function App() {
         <Sobre />
         <Trabalhos onAbrir={abrirV} />
         <Cobertura />
+        <Depoimentos />
         <Contato />
       </main>
 

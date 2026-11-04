@@ -219,6 +219,34 @@ img,video{display:block}
 .k-cob.anima .k-cobfim{flex:none;width:min(420px,40%)}
 .k-cobfim .k-cobt{font-size:clamp(28px,3vw,40px);margin:0}
 
+/* ===== depoimentos: conversas de DM ===== */
+.k-dpgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:72px;align-items:center}
+.k-dptipos{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.k-dptipo.on{background:var(--ink)}
+.k-dpsetas{display:flex;gap:8px;margin-top:16px}
+.k-dmpilha{display:grid}
+.k-dm{grid-area:1/1;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 40px 64px -44px var(--shadow);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}
+.k-dm.on{opacity:1;visibility:visible}
+.k-dmtopo{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.k-dmav{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--blushSoft);color:var(--blushInk);font-size:14px;font-weight:800}
+.k-dmquem{min-width:0;display:flex;flex-direction:column}
+.k-dmquem b{font-size:15px;font-weight:700}
+.k-dmquem small{font-size:13px;font-weight:600;color:var(--muted)}
+.k-dmmsgs{list-style:none;margin:0;padding:20px 0 12px;display:flex;flex-direction:column;gap:10px}
+.k-dmlin{position:relative;display:flex}
+.k-dmlin.kayo{justify-content:flex-end}
+.k-dmbolha{max-width:82%;padding:10px 14px;font-size:15px;line-height:1.45;opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s var(--ease-out)}
+.k-dmbolha.on{opacity:1;transform:none}
+.k-dmlin.casal .k-dmbolha{background:var(--paper2);color:var(--ink);border-radius:18px 18px 18px 4px}
+.k-dmlin.kayo .k-dmbolha{background:var(--ink);color:var(--onInk);border-radius:18px 18px 4px 18px}
+.k-dmdig{position:absolute;left:0;top:0;display:flex;gap:4px;padding:14px;background:var(--paper2);border-radius:18px 18px 18px 4px}
+.k-dmdig i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:k-dig 1s ease-in-out infinite}
+.k-dmdig i:nth-child(2){animation-delay:.15s}
+.k-dmdig i:nth-child(3){animation-delay:.3s}
+@keyframes k-dig{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.k-dmreage{display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:13px;font-weight:600;color:var(--muted);opacity:0;transition:opacity .35s ease}
+.k-dmreage.on{opacity:1}
+
 /* ===== contato ===== */
 .k-cgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:56px;align-items:center}
 .k-reply{position:relative;border-radius:28px;overflow:hidden;background:var(--media);color:var(--onMedia);isolation:isolate;padding:64px 16px 16px;display:flex;flex-direction:column;gap:16px;box-shadow:0 40px 64px -40px var(--shadow)}
@@ -289,6 +317,7 @@ img,video{display:block}
 .k-ltcel .k-cd{font-size:12px;margin-top:2px}
 .k-ltcel .k-tag{font-size:11px;padding:2px 8px}
 .k-ltitem{padding:28px 0}
+.k-dpgrid{grid-template-columns:minmax(0,1fr);gap:32px}
 .k-bento{grid-template-columns:repeat(6,minmax(0,1fr))}
 .k-bretrato{grid-column:1/7;grid-row:auto;min-height:0;aspect-ratio:4/5}
 .k-bola{grid-column:1/7;grid-row:auto;padding:28px}
@@ -320,6 +349,8 @@ img,video{display:block}
 .k-flds{grid-template-columns:minmax(0,1fr)}
 .k-ltitem{grid-template-columns:52px minmax(0,1fr) auto;gap:10px}
 .k-lttit{font-size:22px}
+.k-dm{padding:16px;border-radius:20px}
+.k-dmbolha{max-width:88%;font-size:14px}
 .k-bento{gap:12px}
 .k-bc{border-radius:20px}
 .k-bbast{min-height:220px}

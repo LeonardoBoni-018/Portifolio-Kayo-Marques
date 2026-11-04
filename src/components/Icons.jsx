@@ -48,6 +48,10 @@ export const IconInsta = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.8" {...base}><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.2 6.8h.01" /></svg>
 );
 
+export const IconCoracao = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--rec)" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.1C1.6 8 3.6 4.5 7.2 4.5c2 0 3.6 1 4.8 2.8 1.2-1.8 2.8-2.8 4.8-2.8 3.6 0 5.6 3.5 4.4 6.9-1.7 4.5-9.2 9.1-9.2 9.1z" /></svg>
+);
+
 export const IconFechar = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" strokeWidth="2" {...base}><path d="M6 6l12 12M18 6L6 18" /></svg>
 );
