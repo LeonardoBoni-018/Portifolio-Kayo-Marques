@@ -308,22 +308,31 @@ img,video{display:block}
 /* ===== contato ===== */
 .k-cgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:56px;align-items:center}
 .k-reply{position:relative;border-radius:28px;overflow:hidden;background:var(--media);color:var(--onMedia);isolation:isolate;padding:64px 16px 16px;display:flex;flex-direction:column;gap:16px;box-shadow:0 40px 64px -40px var(--shadow)}
-.k-reply:focus{outline:none}
 .k-reply .k-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(.42) saturate(.9)}
-.k-q{font-family:var(--font-display);font-size:28px;line-height:1.1;text-align:center;margin:8px 0 4px}
-.k-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.k-opt{height:48px;border-radius:16px;border:1px solid var(--onMediaLine);background:var(--onMediaChip);color:var(--onMedia);font-weight:700;font-size:14px;cursor:pointer;transition:background-color .2s ease,color .2s ease}
-.k-opt:hover{border-color:var(--onMedia)}
-.k-opt.on{background:var(--onMedia);color:var(--media)}
+.k-sticker{background:var(--onMedia);color:var(--media);border-radius:18px;padding:14px}
+.k-stq{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-family:var(--font-display);font-size:20px;line-height:1.15;margin-bottom:10px}
+.k-stq output{font-family:var(--font-body);font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
+.k-enq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.k-enqop{min-height:44px;padding:0 8px;border-radius:12px;border:1px solid color-mix(in srgb,var(--media) 28%,transparent);background:transparent;color:var(--media);font-weight:700;font-size:14px;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.k-enqop:hover{border-color:var(--media)}
+.k-enqop.on{background:var(--media);border-color:var(--media);color:var(--onMedia)}
+.k-enqop:focus-visible{outline-color:var(--media)}
+.k-sli{position:relative;height:44px;display:flex;align-items:center}
+.k-sli::before{content:"";position:absolute;left:0;right:0;height:8px;border-radius:8px;background:color-mix(in srgb,var(--media) 16%,var(--onMedia))}
+.k-slifill{position:absolute;left:0;height:8px;border-radius:8px;background:var(--blush);width:calc(22px + (100% - 44px) * var(--f))}
+.k-sliemo{position:absolute;left:calc(22px + (100% - 44px) * var(--f));top:50%;translate:-50% -50%;scale:var(--e);font-size:24px;line-height:1;pointer-events:none;transition:scale .2s var(--ease-out)}
+.k-sli input{position:absolute;left:0;top:0;width:100%;height:100%;margin:0;opacity:0;cursor:grab}
+.k-sli input:active{cursor:grabbing}
+.k-sli input::-webkit-slider-thumb{width:44px;height:44px;-webkit-appearance:none;appearance:none}
+.k-sli input::-moz-range-thumb{width:44px;height:44px;border:0}
+.k-sli:has(input:focus-visible){outline:2px solid var(--media);outline-offset:2px;border-radius:12px}
+.k-renvia{flex:none;gap:8px}
+.k-reply:focus{outline:none}
 .k-flds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .k-fl{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:700;color:var(--onMedia)}
 .k-inp{width:100%;height:48px;border-radius:16px;border:1px solid var(--onMediaLine);background:var(--onMediaChip);color:var(--onMedia);padding:0 16px;font:inherit;font-size:16px;font-weight:600;color-scheme:dark}
 .k-inp::placeholder{color:var(--onMediaSoft)}
 .k-inp:focus-visible{outline:2px solid var(--onMedia)}
-.k-rbar{display:flex;gap:8px;align-items:center}
-.k-rbar .k-inp{border-radius:999px;padding:0 20px}
-.k-send{width:48px;height:48px;border-radius:50%;background:var(--onMedia);color:var(--media);display:grid;place-items:center;flex:none;text-decoration:none;transition:transform .2s ease}
-.k-send:active{transform:scale(.94)}
 .k-note{font-size:14px;font-weight:600;color:var(--muted);margin-top:28px}
 .k-bubble{margin-top:8px;background:var(--accentSoft);border-radius:20px 20px 20px 4px;padding:16px;font-size:16px;line-height:1.55;color:var(--ink);max-width:56ch}
 
@@ -431,7 +440,6 @@ img,video{display:block}
 @media (max-width:380px){
 .k-h1{font-size:40px}
 .k-ct{font-size:24px}
-.k-opts{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
 html{scroll-behavior:auto}

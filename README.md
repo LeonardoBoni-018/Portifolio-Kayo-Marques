@@ -38,7 +38,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Depoimentos | as bolhas da DM entram em sequência, com "digitando…", uma vez só | CSS + timers |
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |
 | Agenda | calendário mensal; o dia escolhido vai para o formulário | React |
-| Contato | a terceira barrinha do story do formulário enche ao rolar | GSAP ScrollTrigger |
+| Contato | a terceira barrinha do story do formulário enche ao rolar; enquete e slider de emoji | GSAP ScrollTrigger + CSS |
 | Rodapé | o selo se desenha pelas linhas de construção e o "kayo marques" sobe de dentro da linha | GSAP ScrollTrigger |
 
 Com movimento reduzido ativado no sistema, ou sem JavaScript, todas as seções aparecem no estado final, sem efeito.

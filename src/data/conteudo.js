@@ -112,6 +112,10 @@ export const FRASES = {
   'Marca': 'conteúdo para marca'
 };
 
+// Horas de cobertura no sticker do formulário
+// TODO: confirmar com o Kayo (pacotes de horas que ele oferece)
+export const HORAS = { min: 2, max: 10, padrao: 6, emoji: '🎉' };
+
 // Agenda: dias já fechados e dias com última vaga, em AAAA-MM-DD. O resto fica livre.
 // TODO: confirmar com o Kayo (datas reais; hoje são exemplos)
 export const AGENDA = {
