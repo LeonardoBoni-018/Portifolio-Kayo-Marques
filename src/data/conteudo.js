@@ -68,6 +68,27 @@ export const CATS = [
     { t: 'Estúdio de beleza', tipo: 'Fotos', img: I.marBeleza } ] }
 ];
 
+// destaques em círculo, com stories próprios (não repetem os itens do feed)
+// TODO: confirmar com o Kayo (trocar pelos destaques reais do Instagram dele)
+export const DESTAQUES = [
+  { label: 'Casamentos', cover: I.casNoiva, items: [
+    { t: 'A noiva antes da cerimônia', tipo: 'Stories', img: I.casNoiva },
+    { t: 'O vestido à espera', tipo: 'Stories', img: I.casVestido } ] },
+  { label: 'Chá revelação', cover: I.ensGest, items: [
+    { t: 'A contagem regressiva', tipo: 'Stories', img: I.ensGest },
+    { t: 'A festa da revelação', tipo: 'Stories', img: I.fesBaloes } ] },
+  { label: '15 anos', cover: I.fesBolo, items: [
+    { t: 'O bolo e as velas', tipo: 'Stories', img: I.fesBolo },
+    { t: 'A pista cheia', tipo: 'Stories', img: I.fesCores } ] },
+  { label: 'Marcas', cover: I.marSalao, items: [
+    { t: 'Um dia no salão', tipo: 'Stories', img: I.marSalao },
+    { t: 'O prato do dia', tipo: 'Stories', img: I.marPrato } ] },
+  { label: 'Bastidores', cover: I.capDurante, items: [
+    { t: 'Do celular para o feed', tipo: 'Bastidores', img: I.capDurante },
+    { t: 'Vários olhares', tipo: 'Bastidores', img: I.fesFilmando },
+    { t: 'A edição depois da festa', tipo: 'Bastidores', img: I.capDepois } ] }
+];
+
 // story do topo: c = categoria, i = item dentro dela
 export const HERO = [
   { c: 2, i: 3, tag: 'Tempo real', d: 'Stories no ar enquanto a festa acontece.' },

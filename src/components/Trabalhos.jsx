@@ -5,6 +5,7 @@ import { CATS } from '../data/conteudo.js';
 import { useSincronizarMidia } from '../lib/hooks.js';
 import { IconPlay } from './Icons.jsx';
 import Midia from './Midia.jsx';
+import Destaques from './Destaques.jsx';
 
 const FILTROS = [{ label: 'Todos', id: -1 }].concat(CATS.map((c, ci) => ({ label: c.label, id: ci })));
 const SAIDA = [0.2, 0.8, 0.2, 1];
@@ -23,7 +24,7 @@ function itensDoFeed(filtro) {
 }
 
 // TRABALHOS: feed com filtros por tipo (Motion: o destaque do filtro desliza e os cards se reorganizam)
-export default function Trabalhos({ onAbrir }) {
+export default function Trabalhos({ onAbrir, vistos, onAbrirDestaque }) {
   const [filtro, setFiltro] = useState(-1);
   useSincronizarMidia();
 
@@ -56,8 +57,9 @@ export default function Trabalhos({ onAbrir }) {
     <section id="trabalhos" className="k-wrap k-sec" style={{ scrollMarginTop: 88 }} ref={raiz}>
       <div className="k-head">
         <h2 className="k-h2 k-rv">Um olhar para cada tipo de projeto</h2>
-        <p className="k-sub k-rv" style={{ '--d': '.08s' }}>Filtre por tipo e toque num trabalho para assistir em tela cheia.</p>
+        <p className="k-sub k-rv" style={{ '--d': '.08s' }}>Toque num círculo para ver os stories, ou filtre o feed por tipo de evento.</p>
       </div>
+      <Destaques vistos={vistos} onAbrir={onAbrirDestaque} />
       <LayoutGroup>
         <div className="k-filters" role="group" aria-label="Filtrar trabalhos">
           {FILTROS.map((f) => (

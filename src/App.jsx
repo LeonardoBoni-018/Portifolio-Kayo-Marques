@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { CATS, INSTAGRAM_URL, TELEFONE, WHATSAPP_URL } from './data/conteudo.js';
+import { CATS, DESTAQUES, INSTAGRAM_URL, TELEFONE, WHATSAPP_URL } from './data/conteudo.js';
 import { iniciarMidia, pararMidia } from './lib/media.js';
 import { ScrollTrigger } from './lib/gsap.js';
 import Abertura, { deveAbrir } from './components/Abertura.jsx';
@@ -18,23 +18,30 @@ import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
 
 const CHAVE_TEMA = 'kayo-tema-v2';
+const CHAVE_VISTOS = 'kayo-destaques-vistos';
+const LISTAS = { feed: CATS, destaques: DESTAQUES };
 
 function temaSalvo() {
   try { return localStorage.getItem(CHAVE_TEMA) === 'escuro' ? 'escuro' : 'claro'; } catch (e) { return 'claro'; }
 }
 
+function vistosSalvos() {
+  try { return JSON.parse(localStorage.getItem(CHAVE_VISTOS)) || []; } catch (e) { return []; }
+}
+
 // próximo story do visualizador: acaba a categoria, passa para a seguinte; acaba tudo, fecha
 function avanca(s) {
   if (s.v < 0) return s;
-  if (s.vi + 1 < CATS[s.v].items.length) return { ...s, vi: s.vi + 1, vt: s.vt + 1 };
-  if (s.v + 1 < CATS.length) return { v: s.v + 1, vi: 0, vt: s.vt + 1 };
+  const lista = LISTAS[s.lista];
+  if (s.vi + 1 < lista[s.v].items.length) return { ...s, vi: s.vi + 1, vt: s.vt + 1 };
+  if (s.v + 1 < lista.length) return { ...s, v: s.v + 1, vi: 0, vt: s.vt + 1 };
   return { ...s, v: -1 };
 }
 
 function volta(s) {
   if (s.v < 0) return s;
   if (s.vi > 0) return { ...s, vi: s.vi - 1, vt: s.vt + 1 };
-  if (s.v > 0) return { v: s.v - 1, vi: CATS[s.v - 1].items.length - 1, vt: s.vt + 1 };
+  if (s.v > 0) return { ...s, v: s.v - 1, vi: LISTAS[s.lista][s.v - 1].items.length - 1, vt: s.vt + 1 };
   return { ...s, vt: s.vt + 1 };
 }
 
@@ -42,7 +49,8 @@ export default function App() {
   const [tema, setTema] = useState(temaSalvo);
   const [io, setIo] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [vis, setVis] = useState({ v: -1, vi: 0, vt: 0 });
+  const [vis, setVis] = useState({ lista: 'feed', v: -1, vi: 0, vt: 0 });
+  const [vistos, setVistos] = useState(vistosSalvos);
   const [vEpoca, setVEpoca] = useState(0);
   const [abrindo, setAbrindo] = useState(deveAbrir);
   const fimAbertura = useCallback(() => setAbrindo(false), []);
@@ -69,17 +77,30 @@ export default function App() {
     return () => clearInterval(id);
   }, [vAberto, vEpoca]);
 
+  // o anel do destaque fica cinza assim que ele é aberto, e continua assim nas próximas visitas
+  useEffect(() => {
+    if (vis.lista !== 'destaques' || vis.v < 0) return;
+    const label = DESTAQUES[vis.v].label;
+    setVistos((atual) => {
+      if (atual.includes(label)) return atual;
+      const novo = [...atual, label];
+      try { localStorage.setItem(CHAVE_VISTOS, JSON.stringify(novo)); } catch (e) { /* ignora */ }
+      return novo;
+    });
+  }, [vis.lista, vis.v]);
+
   const toggleTema = () => {
     const novo = escuro ? 'claro' : 'escuro';
     setTema(novo);
     try { localStorage.setItem(CHAVE_TEMA, novo); } catch (e) { /* ignora */ }
   };
 
-  const abrirV = useCallback((c, i) => {
-    setVis((s) => ({ v: c, vi: i, vt: s.vt + 1 }));
+  const abrirV = useCallback((c, i, lista = 'feed') => {
+    setVis((s) => ({ lista, v: c, vi: i, vt: s.vt + 1 }));
     setVEpoca((e) => e + 1);
     setMenu(false);
   }, []);
+  const abrirDestaque = useCallback((i) => abrirV(i, 0, 'destaques'), [abrirV]);
   const vNext = () => { setVis(avanca); setVEpoca((e) => e + 1); };
   const vPrev = () => { setVis(volta); setVEpoca((e) => e + 1); };
   const fecharV = () => setVis((s) => ({ ...s, v: -1 }));
@@ -95,7 +116,7 @@ export default function App() {
         <Hero pausado={vAberto || abrindo} onAbrir={abrirV} />
         <LinhaTempo />
         <Sobre />
-        <Trabalhos onAbrir={abrirV} />
+        <Trabalhos onAbrir={abrirV} vistos={vistos} onAbrirDestaque={abrirDestaque} />
         <Cobertura />
         <Depoimentos />
         <Faq />
@@ -120,7 +141,7 @@ export default function App() {
       </div>
 
       <AnimatePresence>
-        {vAberto && <Visualizador key="visualizador" v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}
+        {vAberto && <Visualizador key="visualizador" lista={LISTAS[vis.lista]} v={vis.v} vi={vis.vi} vt={vis.vt} onPrev={vPrev} onNext={vNext} onFechar={fecharV} />}
       </AnimatePresence>
     </div>
     </MotionConfig>
