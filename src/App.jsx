@@ -9,6 +9,7 @@ import Hero from './components/Hero.jsx';
 import LinhaTempo from './components/LinhaTempo.jsx';
 import Sobre from './components/Sobre.jsx';
 import Depoimentos from './components/Depoimentos.jsx';
+import Faq from './components/Faq.jsx';
 import SeloConstrucao from './components/SeloConstrucao.jsx';
 import Trabalhos from './components/Trabalhos.jsx';
 import Cobertura from './components/Cobertura.jsx';
@@ -97,6 +98,7 @@ export default function App() {
         <Trabalhos onAbrir={abrirV} />
         <Cobertura />
         <Depoimentos />
+        <Faq />
         <Contato />
       </main>
 

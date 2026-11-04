@@ -123,3 +123,14 @@ export const CONVERSAS = [
     { de: 'casal', txt: 'Foi a festa que eu queria, e ainda ficou tudo guardado.' }
   ] }
 ];
+
+// Perguntas frequentes sobre o trabalho de storymaker.
+// TODO: confirmar com o Kayo (todas as respostas são rascunho)
+export const FAQ = [
+  { q: 'O que o storymaker entrega?', a: 'Stories e vídeos verticais do seu evento, gravados e publicados enquanto ele acontece.' },
+  { q: 'Quando os stories são postados?', a: 'Durante o evento, poucos minutos depois de cada momento.' },
+  { q: 'Posta no meu perfil ou no do Kayo?', a: 'Combinamos antes do evento em qual perfil os stories vão ao ar.' },
+  { q: 'O que recebo depois da festa?', a: 'O material gravado para guardar e postar quando quiser. O formato e o prazo são combinados na contratação.' },
+  { q: 'Qual equipamento é usado?', a: 'Celular, para o conteúdo ficar pronto na hora e no formato vertical dos stories.' },
+  { q: 'Com quanta antecedência devo reservar?', a: 'Quanto antes melhor, porque cada data atende um evento. Chame no WhatsApp para ver se a sua está livre.' }
+];
