@@ -16,6 +16,7 @@ import BrutoEditado from './components/BrutoEditado.jsx';
 import Cobertura from './components/Cobertura.jsx';
 import Agenda from './components/Agenda.jsx';
 import Contato from './components/Contato.jsx';
+import RastroFotos from './components/RastroFotos.jsx';
 import Visualizador from './components/Visualizador.jsx';
 import { IconWhats } from './components/Icons.jsx';
 
@@ -126,6 +127,7 @@ export default function App() {
         <Faq />
         <Agenda data={dataEvento} onEscolher={setDataEvento} />
         <Contato data={dataEvento} onData={setDataEvento} />
+        <RastroFotos />
       </main>
 
       <footer className="k-wrap k-foot">

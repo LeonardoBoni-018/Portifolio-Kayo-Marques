@@ -124,6 +124,10 @@ export const BRUTO_EDITADO = {
   alt: 'Casal abraçado sob o véu'
 };
 
+// Miniaturas do rastro de fotos antes do rodapé
+// TODO: confirmar com o Kayo (fotos reais dele)
+export const RASTRO = [I.casVeu, I.fesBolo, I.marPrato, I.casNoiva, I.fesBaloes, I.marSalao, I.ensGestCasal, I.fesCores];
+
 // Horas de cobertura no sticker do formulário
 // TODO: confirmar com o Kayo (pacotes de horas que ele oferece)
 export const HORAS = { min: 2, max: 10, padrao: 6, emoji: '🎉' };
