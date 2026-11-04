@@ -35,7 +35,7 @@ Ordem da página e o movimento de cada seção (um por seção, nenhum repetido)
 | Sobre | mosaico: os blocos entram em sequência, o retrato se afasta devagar ao rolar e o número de seguidores no selo de perfil conta | GSAP ScrollTrigger |
 | Trabalhos | destaques em círculo; os cards abrem como cortina; o filtro desliza e reorganiza; visor de câmera com REC no hover, foco ou centro da tela | GSAP + Motion + CSS |
 | Bruto × editado | slider de antes e depois com clip-path; aceita fotos ou dois vídeos sincronizados | CSS + input range |
-| Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo | GSAP ScrollTrigger |
+| Cobertura | antes, durante e depois andam na horizontal ao rolar; no celular, foto se aproximando e texto subindo; a mídia ganha cor ao chegar ao centro | GSAP ScrollTrigger + IntersectionObserver |
 | Depoimentos | as bolhas da DM entram em sequência, com "digitando…", uma vez só | CSS + timers |
 | FAQ | acordeão nativo, uma resposta aberta por vez | `<details>` |
 | Agenda | calendário mensal; o dia escolhido vai para o formulário | React |

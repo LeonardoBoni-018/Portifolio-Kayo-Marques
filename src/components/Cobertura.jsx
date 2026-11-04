@@ -62,6 +62,28 @@ export default function Cobertura() {
     return () => mm.revert();
   }, []);
 
+  // preto e branco que ganha cor: a mídia colore ao chegar à faixa central da tela.
+  // Horizontal no trilho do desktop, vertical na coluna do celular. Com movimento reduzido fica em cores.
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    const marcar = (rootMargin) => {
+      const s = sec.current;
+      s.classList.add('pb');
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => e.target.classList.toggle('cor', e.isIntersecting));
+      }, { rootMargin });
+      s.querySelectorAll('.k-cobp').forEach((p) => io.observe(p));
+      return () => {
+        io.disconnect();
+        s.classList.remove('pb');
+        s.querySelectorAll('.k-cobp').forEach((p) => p.classList.remove('cor'));
+      };
+    };
+    mm.add('(min-width: 761px) and (prefers-reduced-motion: no-preference)', () => marcar('0px -38% 0px -38%'));
+    mm.add('(max-width: 760px) and (prefers-reduced-motion: no-preference)', () => marcar('-38% 0px -38% 0px'));
+    return () => mm.revert();
+  }, []);
+
   return (
     <section id="cobertura" className="k-cob" ref={sec} style={{ scrollMarginTop: 88 }}>
       <div className="k-cobpin">
