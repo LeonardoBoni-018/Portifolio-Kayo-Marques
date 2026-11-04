@@ -425,6 +425,7 @@ img,video{display:block}
 .k-ltcel .k-tag{font-size:11px;padding:2px 8px}
 .k-ltitem{padding:28px 0}
 .k-dpgrid,.k-fqgrid,.k-aggrid,.k-begrid{grid-template-columns:minmax(0,1fr);gap:32px}
+.k-be{max-width:460px;margin:0 auto}
 .k-bento{grid-template-columns:repeat(6,minmax(0,1fr))}
 .k-bretrato{grid-column:1/7;grid-row:auto;min-height:0;aspect-ratio:4/5}
 .k-bola{grid-column:1/7;grid-row:auto;padding:28px}
