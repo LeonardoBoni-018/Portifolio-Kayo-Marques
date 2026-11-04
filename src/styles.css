@@ -372,7 +372,7 @@ img,video{display:block}
 .k-rastrofixo img{width:clamp(68px,12vw,132px);aspect-ratio:4/5;object-fit:cover;border-radius:10px;margin:0 clamp(-10px,-.8vw,-5px);rotate:var(--r);translate:0 var(--y);border:3px solid var(--surface);box-shadow:0 16px 24px -18px var(--shadow)}
 
 /* ===== rodapé: o selo desenhado pelas guias ===== */
-.k-foot{margin-top:72px;padding:48px 0 48px;border-top:1px solid var(--line)}
+.k-foot{margin-top:72px;padding-top:48px;padding-bottom:48px;border-top:1px solid var(--line)}
 .k-construcao{display:block;width:min(100%,760px);height:auto;overflow:visible;margin-bottom:8px}
 .k-gd,.k-gc{fill:none;stroke:var(--muted);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:0;opacity:.3}
 .k-anel{fill:none;stroke:var(--blush);stroke-width:3;stroke-dasharray:1;stroke-dashoffset:0}
